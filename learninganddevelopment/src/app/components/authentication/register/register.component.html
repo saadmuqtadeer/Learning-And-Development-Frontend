@@ -5,35 +5,35 @@
         <div class="signup-form">
             <h2>Sign up</h2>
             <p>Let's get you all set up so you can access your personal account.</p>
-            <form>
+            <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="firstName" class="form-label">First Name</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                        <input type="text" class="form-control" formControlName="firstName" id="firstName" placeholder="First Name">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="lastName" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                        <input type="text" class="form-control" id="lastName" formControlName="lastName" placeholder="Last Name">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Email">
+                        <input type="email" class="form-control" id="email" placeholder="Email" formControlName="email">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="phone" class="form-label">Phone Number</label>
-                        <input type="text" class="form-control" id="phone" placeholder="Phone Number">
+                        <input type="text" class="form-control" id="phone" placeholder="Phone Number" formControlName="phoneNo">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="id" class="form-label">ID</label>
-                        <input type="text" class="form-control" id="id" placeholder="ID">
+                        <input type="text" class="form-control" id="id" placeholder="ID" formControlName="id">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="role" class="form-label">Role</label>
-                        <select id="role" class="form-control">
+                        <select id="role" class="form-control" formControlName="role">
                             <option>Employee</option>
                             <option>Manager</option>
                             <option>Admin</option>
@@ -42,21 +42,21 @@
                 </div>
                 <div class="mb-3">
                     <label for="securityQuestion" class="form-label">Security Question</label>
-                    <input type="text" class="form-control" id="securityQuestion" placeholder="What is your first school name?">
+                    <input type="text" class="form-control" id="securityQuestion" placeholder="What is your first school name?" formControlName="securityQuestion">
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Password">
+                    <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password">
                 </div>
                 <div class="mb-3">
                     <label for="confirmPassword" class="form-label">Confirm Password</label>
-                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
+                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" formControlName="confirmPassword">
                 </div>
                 <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="terms">
+                    <input type="checkbox" class="form-check-input" id="terms" formControlName="terms">
                     <label class="form-check-label" for="terms">I agree to the <a href="#" class="terms-link">Terms</a> and <a href="#" class="terms-link">Privacy Policy</a>.</label>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Create account</button>
+                <button type="submit" class="btn btn-primary w-100" >Create account</button>
                 <a routerLink ='login' class="login-link">Already have an account? Log in</a>
             </form>
         </div>

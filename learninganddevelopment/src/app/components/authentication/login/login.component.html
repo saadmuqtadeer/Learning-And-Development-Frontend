@@ -1,17 +1,10 @@
 <div class="login-container">
         <div class="login-form">
             <h2>Login</h2>
-            <form>
+            <form [formGroup]="loginForm" onsubmit="onsubmit()">
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
-                </div>
-                <div class="mb-3">
-                    <label for="role" class="form-label">Role</label>
-                    <select id="role" class="form-control">
-                        <option>User</option>
-                        <option>Admin</option>
-                    </select>
+                    <label for="id" class="form-label">Id</label>
+                    <input type="number" class="form-control" id="id" placeholder="Enter your EmployeeId">
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
