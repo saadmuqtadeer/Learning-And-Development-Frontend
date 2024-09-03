@@ -1,18 +1,21 @@
 import { Injectable } from '@angular/core';
-import { registerUser } from '../../../models/authentication/register';
+import { registerUser } from '../../../models/authentication/registerUser';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterService {
-  userList:registerUser[]=[];
-  constructor() {}
+  // userList:registerUser[]=[];
+  constructor(private http: HttpClient) { }
 
-  register(user:registerUser){
-    this.userList.push(user)
-    console.log(this.userList);
+  private apiUrl = 'http://localhost:5000/api/auth/register'
+  register(user: registerUser): Observable<any> {
+    return this.http.post<any>(this.apiUrl, user);
   }
-  getUsers():registerUser[]{
-    return this.userList;
-  }
+  // getUsers():registerUser[]{
+  //   return this.userList;
+  // }
 }
+

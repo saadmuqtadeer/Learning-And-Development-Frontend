@@ -1,25 +1,27 @@
 <div class="login-container">
-        <div class="login-form">
-            <h2>Login</h2>
-            <form [formGroup]="loginForm" onsubmit="onsubmit()">
-                <div class="mb-3">
-                    <label for="id" class="form-label">Id</label>
-                    <input type="number" class="form-control" id="id" placeholder="Enter your EmployeeId">
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Enter your password">
-                </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="rememberMe">
-                    <label class="form-check-label" for="rememberMe">Remember me</label>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Login</button>
-                <a href="forgotpassword" class="forgot-password float-end">Forgot password?</a>
-                <a routerLink="" class="signup-link">Don't have an account? Sign up</a>
-            </form>
-        </div>
-        <div class="login-image">
-            <img src="https://via.placeholder.com/400x300.png?text=Security+Illustration" alt="Security Illustration">
-        </div>
-    </div>
+  <div class="login-form">
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" onsubmit="onsubmit()">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" class="form-control" id="email" placeholder="Enter your Email">
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Enter your password">
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="rememberMe">
+        <label class="form-check-label" for="rememberMe">Remember me</label>
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Login</button>
+      <a href="forgotpassword" class="forgot-password float-end">Forgot password?</a>
+      <a routerLink="" class="signup-link">Don't have an account? Sign up</a>
+    </form>
+  </div>
+  <div class="login-image">
+    <img
+      src="https://img.freepik.com/free-vector/access-control-system-abstract-concept_335657-3180.jpg?size=626&ext=jpg&ga=GA1.1.556337143.1725380902&semt=ais_hybrid"
+      alt="Security Illustration">
+  </div>
+</div>

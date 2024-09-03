@@ -19,11 +19,11 @@ export class LoginComponent {
     const loginData = this.loginForm.value;
     const isLoginSuccessful = this.loginService.login(loginData.id, loginData.password);
 
-    if (isLoginSuccessful) {
-      // Redirect to the dashboard or home page
-    } else {
-      // Show an error message to the user
-    }
+    // if (isLoginSuccessful) {
+    //   // Redirect to the dashboard or home page
+    // } else {
+    //   // Show an error message to the user
+    // }
   }
 
 }
