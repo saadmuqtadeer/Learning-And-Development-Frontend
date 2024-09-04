@@ -1,0 +1,23 @@
+<div class="login-container">
+  <div class="login-form">
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="logIn()">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" formControlName="Email" placeholder="Enter your Email">
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" formControlName="Password" placeholder="Enter your password">
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Login</button>
+      <a href="forgotpassword" class="forgot-password float-end">Forgot password?</a>
+      <a routerLink="" class="signup-link">Don't have an account? Sign up</a>
+    </form>
+  </div>
+  <div class="login-image">
+    <img
+      src="https://img.freepik.com/free-vector/access-control-system-abstract-concept_335657-3180.jpg?size=626&ext=jpg&ga=GA1.1.556337143.1725380902&semt=ais_hybrid"
+      alt="Security Illustration">
+  </div>
+</div>
