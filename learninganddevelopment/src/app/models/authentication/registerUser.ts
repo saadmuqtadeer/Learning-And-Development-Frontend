@@ -1,5 +1,5 @@
 export interface registerUser {
-  EmployeeId: number,
+  // EmployeeId: number,
   Username: string,
   Email: string,
   Password: string,

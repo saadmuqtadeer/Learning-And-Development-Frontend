@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { RegisterService } from '../register/register.service';
 
 @Injectable({
@@ -6,9 +8,11 @@ import { RegisterService } from '../register/register.service';
 })
 
 export class LoginService {
-  constructor(private registerService: RegisterService) {}
+  constructor(private registerService: RegisterService, private http: HttpClient) {}
 
-  login(id: number, password: string) {
-
+  private apiUrl = 'http://localhost:5000/api/auth/login'
+  login(Email:string, Password:string): Observable<any> {
+    console.log({Email, Password});
+    return this.http.post<any>(this.apiUrl, {Email, Password});
   }
 }

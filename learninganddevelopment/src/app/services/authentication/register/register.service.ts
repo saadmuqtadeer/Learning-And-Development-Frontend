@@ -12,6 +12,7 @@ export class RegisterService {
 
   private apiUrl = 'http://localhost:5000/api/auth/register'
   register(user: registerUser): Observable<any> {
+    console.log(user);
     return this.http.post<any>(this.apiUrl, user);
   }
   // getUsers():registerUser[]{

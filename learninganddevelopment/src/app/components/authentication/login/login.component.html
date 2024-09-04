@@ -1,18 +1,14 @@
 <div class="login-container">
   <div class="login-form">
     <h2>Login</h2>
-    <form [formGroup]="loginForm" onsubmit="onsubmit()">
+    <form [formGroup]="loginForm" (ngSubmit)="logIn()">
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input type="text" class="form-control" id="email" placeholder="Enter your Email">
+        <input type="email" class="form-control" id="email" formControlName="Email" placeholder="Enter your Email">
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="Enter your password">
-      </div>
-      <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="rememberMe">
-        <label class="form-check-label" for="rememberMe">Remember me</label>
+        <input type="password" class="form-control" id="password" formControlName="Password" placeholder="Enter your password">
       </div>
       <button type="submit" class="btn btn-primary w-100">Login</button>
       <a href="forgotpassword" class="forgot-password float-end">Forgot password?</a>

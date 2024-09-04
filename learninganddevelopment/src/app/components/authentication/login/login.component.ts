@@ -11,19 +11,20 @@ export class LoginComponent {
   loginForm:FormGroup;
   constructor(private fb:FormBuilder, private loginService:LoginService){
     this.loginForm=this.fb.group({
-      id:['',Validators.required],
-      password:['',Validators.required],
+      Email:['',Validators.required],
+      Password:['',Validators.required],
     })
   }
-  onSubmit() {
+  logIn() {
     const loginData = this.loginForm.value;
-    const isLoginSuccessful = this.loginService.login(loginData.id, loginData.password);
-
-    // if (isLoginSuccessful) {
-    //   // Redirect to the dashboard or home page
-    // } else {
-    //   // Show an error message to the user
-    // }
+    this.loginService.login(loginData.Email, loginData.Password).subscribe(
+      response => {
+        console.log('POST request successful:', response);
+      },
+      error => {
+        console.error('Error occurred during POST request:', error);
+      }
+    );
   }
 
 }
