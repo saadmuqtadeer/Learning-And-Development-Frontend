@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { registerUser } from '../../../models/authentication/registerUser';
+import { user } from '../../../models/authentication/user';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -7,11 +7,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RegisterService {
-  // userList:registerUser[]=[];
   constructor(private http: HttpClient) { }
 
   private apiUrl = 'http://localhost:5000/api/auth/register'
-  register(user: registerUser): Observable<any> {
+  register(user: user): Observable<any> {
     console.log(user);
     return this.http.post<any>(this.apiUrl, user);
   }

@@ -28,14 +28,12 @@ body {
     color: #6c757d;
 }
 
-.signup-form .form-control {
-    border-radius: 20px;
-    height: 45px;
-    margin-bottom: 20px;
+.signup-form .form-label{
+    margin-top: 15px;
 }
 
 .signup-form .btn-primary {
-    border-radius: 20px;
+    border-radius: 5px;
     height: 45px;
     background-color: #000000;
     border: none;

@@ -1,9 +1,7 @@
-export interface registerUser {
-  // EmployeeId: number,
+export interface user {
   Username: string,
   Email: string,
   Password: string,
-  PhoneNumber: string,
   Role: string,
   SecurityQuestion: string
 }

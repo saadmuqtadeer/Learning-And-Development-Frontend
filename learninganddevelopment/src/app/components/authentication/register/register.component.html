@@ -18,22 +18,15 @@
       <div class="row">
         <div class="col-md-6 mb-1">
           <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="email" placeholder="Email" formControlName="Email">
+          <input type="email" class="form-control" id="email" placeholder="Email" formControlName="Email" [class.is-invalid]="validateControl('Email')">
+          <span *ngIf="validateControlError('Email','required')" class="text-danger">Email is required*</span>
+          <span *ngIf="validateControlError('Email','email')" class="text-danger">Email is invalid</span>  
         </div>
-        <div class="col-md-6 mb-1">
-          <label for="phone" class="form-label">Phone Number</label>
-          <input type="text" class="form-control" id="phone" placeholder="Phone Number" formControlName="PhoneNumber">
-        </div>
-      </div>
-      <div class="row">
-        <!-- <div class="col-md-6 mb-1">
-          <label for="id" class="form-label">Employee ID</label>
-          <input type="text" class="form-control" id="id" placeholder="Employee ID" formControlName="EmployeeId">
-        </div> -->
         <div class="col-md-6 mb-1">
           <label for="role" class="form-label">Role</label>
-          <select id="role" class="form-control" formControlName="Role">
-            <option value="Employee" selected>Employee</option>
+          <select id="role" class="form-select" formControlName="Role">
+            <option value="" selected>Select</option>
+            <option value="Employee">Employee</option>
             <option value="Accounts">Accounts</option>
           </select>
         </div>
@@ -45,13 +38,16 @@
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="Password" formControlName="Password">
+        <input type="password" class="form-control" id="password" placeholder="Password" formControlName="Password" [class.is-invalid]="validateControl('Password')" >
+        <span *ngIf="validateControlError('Password','required')" class="text-danger">Password is required*</span>
       </div>
       <div class="mb-3">
         <label for="confirmPassword" class="form-label">Confirm Password</label>
-        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
+        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" formControlName="ConfirmPassword" 
+        [class.is-invalid]="validateControl('ConfirmPassword')">
+        <span *ngIf="validateControlError('ConfirmPassword','passwordMismatch')" class="text-danger">Password and Confirm Password should match</span>
       </div>
-      <button type="submit" class="btn btn-primary w-100">Create account</button>
+      <button type="submit" class="btn btn-primary w-100 mt-3" [disabled]="registrationForm.invalid">Create account</button>
       <a routerLink='login' class="login-link">Already have an account? Log in</a>
     </form>
   </div>
