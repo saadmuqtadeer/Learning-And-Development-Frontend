@@ -8,10 +8,12 @@ import { LoginService } from '../../../services/authentication/login/login.servi
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  loginForm:FormGroup;
-  constructor(private fb:FormBuilder, private loginService:LoginService){
+  submitted=false;
+  loginForm!:FormGroup;
+  constructor(private fb:FormBuilder, private loginService:LoginService){}
+  ngOnInit():void{
     this.loginForm=this.fb.group({
-      Email:['',Validators.required],
+      Email:['',[Validators.required,Validators.email]],
       Password:['',Validators.required],
     })
   }
@@ -25,6 +27,16 @@ export class LoginComponent {
         console.error('Error occurred during POST request:', error);
       }
     );
+  }
+  validateControl(input:string){
+    return  this.loginForm.get(input)?.invalid && 
+    ((this.loginForm.get(input)?.touched) ||
+    (this.loginForm.get(input)?.dirty))
+  }
+  validateControlError(input:string,errorType:string){
+    return this.loginForm.get(input)?.hasError(errorType) &&
+   ((this.loginForm.get(input)?.touched) ||
+    (this.loginForm.get(input)?.dirty));
   }
 
 }
