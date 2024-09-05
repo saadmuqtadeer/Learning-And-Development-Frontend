@@ -1,6 +1,6 @@
-
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { registerUser } from '../../models/authentication/registerUser';
 
@@ -9,7 +9,7 @@ import { registerUser } from '../../models/authentication/registerUser';
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router:Router) { }
 
   private apiUrl = 'http://localhost:5000/api/auth/'
   
@@ -23,5 +23,27 @@ export class AuthService {
     return this.http.post<any>(`${this.apiUrl}login`, {Email, Password});
   }
 
-  
+  getAll():Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}`);
+  }
+
+  storeToken(token:string){
+    localStorage.setItem('token', token);
+  }
+
+
+  getToken() {
+    return localStorage.getItem('token');
+  }
+
+  isLoggedIn():boolean{
+    return !!localStorage.getItem('token');
+  }
+
+  logout(){
+    localStorage.clear();
+    this.router.navigate(['login']);
+    // localStorage.removeItem('token');, private route:Router
+  }
+
 }
