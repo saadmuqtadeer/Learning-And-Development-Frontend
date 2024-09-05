@@ -2,18 +2,23 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { registerUser } from '../../models/authentication/registerUser';
+import { user } from '../../models/authentication/user';
+import {JwtHelperService} from '@auth0/angular-jwt'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient, private router:Router) { }
-
-  private apiUrl = 'http://localhost:5000/api/auth/'
   
-  register(user: registerUser): Observable<any> {
+  private apiUrl = 'http://localhost:5000/api/auth/';
+  private payloadData:any;
+  
+  constructor(private http: HttpClient, private router:Router) { 
+    this.payloadData = this.decodeToken();
+  }
+
+  register(user: user): Observable<any> {
     console.log(user);
     return this.http.post<any>(`${this.apiUrl}register`, user);
   }
@@ -44,6 +49,30 @@ export class AuthService {
     localStorage.clear();
     this.router.navigate(['login']);
     // localStorage.removeItem('token');, private route:Router
+  }
+
+  decodeToken(){
+    const token = this.getToken()!;
+    const jwthelper = new JwtHelperService();
+    console.log(jwthelper.decodeToken(token));
+    return jwthelper.decodeToken(token);
+  }
+
+  getRoleFromToken(){
+    if(this.payloadData){
+      
+      return this.payloadData.role;
+    }
+  }
+
+  getNameFromToken(){
+    if(this.payloadData)
+    return this.payloadData.unique_name;
+  }
+
+  getEmailFromToken(){
+    if(this.payloadData)
+    return this.payloadData.email;
   }
 
 }

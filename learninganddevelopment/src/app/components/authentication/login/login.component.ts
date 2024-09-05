@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/authentication/auth.service';
+import { UserStoreService } from '../../../services/authentication/user-store.service';
 // import { NgToastService } from 'ng-toast';
 
 @Component({
@@ -11,18 +12,17 @@ import { AuthService } from '../../../services/authentication/auth.service';
 }) 
 
 export class LoginComponent  {
-  loginForm: FormGroup;
+  loginForm!: FormGroup;
+  private payloadData:any;
 
   constructor(
     private auth: AuthService,
     private fb: FormBuilder,
     private loginService: AuthService,
-    private router: Router
+    private router: Router,
+    private userStore: UserStoreService
   ) {
-    this.loginForm = this.fb.group({
-      Email: ['', [Validators.required, Validators.email]],
-      Password: ['', [Validators.required]]
-    });
+   
   }
   validateControl(input:string){
     return  this.loginForm.get(input)?.invalid && 
@@ -35,7 +35,12 @@ export class LoginComponent  {
     (this.loginForm.get(input)?.dirty));
   }
 
-  // ngOnInit() {}
+  ngOnInit() {
+    this.loginForm = this.fb.group({
+      Email: ['', [Validators.required, Validators.email]],
+      Password: ['', [Validators.required]]
+    });
+  }
 
   logIn() {
     if (this.loginForm.invalid) {
@@ -49,6 +54,10 @@ export class LoginComponent  {
       next: (response) => {
         console.log('POST request successful:', response);
         this.auth.storeToken(response.token);
+        this.payloadData = this.auth.decodeToken();
+        this.userStore.setRole(this.payloadData.role);
+        this.userStore.setName(this.payloadData.unique_name);
+        this.userStore.setEmail(this.payloadData.email);
         this.router.navigate(['dashboard-admin']);
       },
       error: (err) => {
