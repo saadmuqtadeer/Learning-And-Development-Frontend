@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms'
-import { LoginService } from '../../../services/authentication/login/login.service';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../services/authentication/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import { LoginService } from '../../../services/authentication/login/login.servi
 })
 export class LoginComponent {
   loginForm:FormGroup;
-  constructor(private fb:FormBuilder, private loginService:LoginService){
+  constructor(private fb:FormBuilder, private loginService:AuthService, private router:Router){
     this.loginForm=this.fb.group({
       Email:['',Validators.required],
       Password:['',Validators.required],
@@ -17,14 +18,15 @@ export class LoginComponent {
   }
   logIn() {
     const loginData = this.loginForm.value;
-    this.loginService.login(loginData.Email, loginData.Password).subscribe(
-      response => {
+    this.loginService.login(loginData.Email, loginData.Password).subscribe({
+      next: (response) => {
         console.log('POST request successful:', response);
+        this.router.navigate(['dashboard-admin']);
       },
-      error => {
-        console.error('Error occurred during POST request:', error);
+      error: (err) => {
+        console.error('Error occurred during POST request:', err);
       }
-    );
+    });
   }
 
 }
