@@ -3,51 +3,50 @@
     <img src="https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-83.jpg?size=626&ext=jpg" alt="Sign Up Illustration">
   </div>
   <div class="signup-form">
-    <h2>Sign up</h2>
+    <h2 class="mb-5">Sign up</h2>
     <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+
       <div class="row mt-4">
-        <div class="col-md-6 mb-1">
-          <label for="firstName" class="form-label">First Name</label>
-          <input type="text" class="form-control" formControlName="FirstName" id="firstName" placeholder="First Name">
+        <div class="col-md-6 mb-1 textOnInput mb-4">
+          <label for="firstName">First Name</label>
+          <input type="text" class="form-control" formControlName="FirstName" id="firstName" >
         </div>
-        <div class="col-md-6 mb-1">
-          <label for="lastName" class="form-label">Last Name</label>
-          <input type="text" class="form-control" id="lastName" formControlName="LastName" placeholder="Last Name">
+        <div class="col-md-6 mb-1 textOnInput mb-4">
+          <label for="lastName">Last Name</label>
+          <input type="text" class="form-control" id="lastName" formControlName="LastName">
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-6 mb-1">
-          <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="email" placeholder="Email" formControlName="Email" [class.is-invalid]="validateControl('Email')">
+        <div class="mb-1 textOnInput mb-4">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" formControlName="Email" [class.is-invalid]="validateControl('Email')">
           <span *ngIf="validateControlError('Email','required')" class="text-danger">Email is required*</span>
           <span *ngIf="validateControlError('Email','email')" class="text-danger">Email is invalid</span>  
         </div>
-        <div class="col-md-6 mb-1">
-          <label for="role" class="form-label">Role</label>
-          <select id="role" class="form-select" formControlName="Role">
+        <div class=" mb-1 textOnInput mb-4">
+          <label for="role">Role</label>
+          <select id="role" class="form-select form-control" formControlName="Role">
             <option value="" selected>Select</option>
             <option value="Employee">Employee</option>
             <option value="Accounts">Accounts</option>
           </select>
         </div>
-      </div>
-      <div class="mb-3">
-        <label for="securityQuestion" class="form-label">Security Question</label>
+      <div class="mb-3 textOnInput mb-4">
+        <label for="securityQuestion">Security Question</label>
         <input type="text" class="form-control" id="securityQuestion" placeholder="What is your first school name?"
           formControlName="SecurityQuestion">
       </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="Password" formControlName="Password" [class.is-invalid]="validateControl('Password')" >
+      <div class="mb-3 textOnInput mb-4">
+        <label for="password" >Password</label>
+        <input type="password" class="form-control" id="password"  formControlName="Password" [class.is-invalid]="validateControl('Password')" >
         <span *ngIf="validateControlError('Password','required')" class="text-danger">Password is required*</span>
       </div>
-      <div class="mb-3">
-        <label for="confirmPassword" class="form-label">Confirm Password</label>
-        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" formControlName="ConfirmPassword" 
+      <div class="mb-3 textOnInput mb-4">
+        <label for="confirmPassword" >Confirm Password</label>
+        <input type="password" class="form-control" id="confirmPassword" formControlName="ConfirmPassword" 
         [class.is-invalid]="validateControl('ConfirmPassword')">
         <span *ngIf="validateControlError('ConfirmPassword','passwordMismatch')" class="text-danger">Password and Confirm Password should match</span>
       </div>
-      <button type="submit" class="btn btn-primary w-100 mt-3" [disabled]="registrationForm.invalid">Create account</button>
+      <button type="submit" class="btn btn-primary w-100 mt-1" [disabled]="registrationForm.invalid">Create account</button>
       <a routerLink='login' class="login-link">Already have an account? Log in</a>
     </form>
   </div>
