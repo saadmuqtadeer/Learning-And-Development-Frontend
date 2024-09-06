@@ -1,0 +1,7 @@
+.content {
+    margin-top: 70px; /* Adjust this according to your sidebar width */
+    background-color: #f4f4f4;
+    color: rgb(243, 79, 79);
+    min-height: 100vh; /* This will prevent the content from expanding behind the sidebar */
+  }
+  
