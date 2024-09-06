@@ -22,7 +22,11 @@ export class LoginComponent  {
     private router: Router,
     private userStore: UserStoreService
   ) {
-   
+    localStorage.clear();
+    this.loginForm = this.fb.group({
+      Email: ['', [Validators.required, Validators.email]],
+      Password: ['', [Validators.required]]
+    });
   }
   validateControl(input:string){
     return  this.loginForm.get(input)?.invalid && 
@@ -35,35 +39,56 @@ export class LoginComponent  {
     (this.loginForm.get(input)?.dirty));
   }
 
-  ngOnInit() {
-    this.loginForm = this.fb.group({
-      Email: ['', [Validators.required, Validators.email]],
-      Password: ['', [Validators.required]]
-    });
-  }
+
 
   logIn() {
     if (this.loginForm.invalid) {
-      // Handle form errors (e.g., show a message)
       console.error('Form is invalid');
       return;
     }
-
+  
     const loginData = this.loginForm.value;
     this.loginService.login(loginData.Email, loginData.Password).subscribe({
       next: (response) => {
         console.log('POST request successful:', response);
+
         this.auth.storeToken(response.token);
-        this.payloadData = this.auth.decodeToken();
-        this.userStore.setRole(this.payloadData.role);
-        this.userStore.setName(this.payloadData.unique_name);
-        this.userStore.setEmail(this.payloadData.email);
-        this.router.navigate(['dashboard-admin']);
+        // localStorage.setItem("token",response.token);
+
+        // this.payloadData = this.auth.decodeToken();
+        
+        // Set user details in UserStoreService
+        // this.userStore.setRole(this.payloadData.role);
+        // this.userStore.setName(this.payloadData.unique_name);
+        // this.userStore.setEmail(this.payloadData.email);
+  
+        // Redirect based on role
+        // this.userStore.getRole().subscribe(role => {
+          switch (response.role) {
+            case "Admin":
+              this.router.navigate(['admin-dashboard']);
+              break;
+            case "Employee":
+              this.router.navigate(['employee-dashboard']);
+              break;
+            case "Accounts":
+              this.router.navigate(['accounts-dashboard']);
+              break;
+            default:
+              console.error('Unknown role:');
+              this.router.navigate(['unauthorized']);
+              break;
+          }
+        // });
       },
       error: (err) => {
         console.error('Error occurred during POST request:', err);
-        // Provide user feedback here
       }
     });
   }
+
+  logOut(){
+    this.auth.logout();
+  }
+  
 }

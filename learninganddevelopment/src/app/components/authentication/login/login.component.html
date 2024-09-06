@@ -13,8 +13,8 @@
         <input type="password" class="form-control" id="password" formControlName="Password" [class.is-invalid]="validateControl('Password')">
         <span *ngIf="validateControlError('Password','required')" class="text-danger">Password is required*</span>
         <button type="submit" class="btn btn-primary w-100 mt-4" [disabled]="loginForm.invalid">Login</button>
-      <a href="forgotpassword" class="forgot-password float-end">Forgot password?</a>
-      <a routerLink="" class="signup-link">Don't have an account? Sign up</a>
+      <a href="forgot-password" class="forgot-password float-end">Forgot password?</a>
+      <a href="register" class="signup-link">Don't have an account? Sign up</a>
       </div>
       </form>
   </div>

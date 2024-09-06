@@ -8,9 +8,10 @@ import { ForgotpasswordComponent } from './components/authentication/forgotpassw
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
-import { SidebarComponent } from './components/Layout/sidebar/sidebar.component';
-import { NavbarComponent } from './components/Layout/navbar/navbar.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { EmpDashboardComponent } from './components/employee/emp-dashboard/emp-dashboard.component';
+import { AccountsDashboardComponent } from './components/accounts/accounts-dashboard/accounts-dashboard.component';
+import { UnauthorizedComponent } from './components/authentication/Unauth/unauthorized/unauthorized.component';
 // import { NgToastModule } from 'ng-angular-popup';
 
 @NgModule({
@@ -20,8 +21,9 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     RegisterComponent,
     ForgotpasswordComponent,
     DashboardComponent,
-    SidebarComponent,
-    NavbarComponent
+    EmpDashboardComponent,
+    AccountsDashboardComponent,
+    UnauthorizedComponent
   ],
   imports: [
     BrowserModule,

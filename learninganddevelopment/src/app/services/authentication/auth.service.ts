@@ -3,18 +3,19 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { user } from '../../models/authentication/user';
-import {JwtHelperService} from '@auth0/angular-jwt'
+import { JwtHelperService } from '@auth0/angular-jwt'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  
+
   private apiUrl = 'http://localhost:5000/api/auth/';
-  private payloadData:any;
-  
-  constructor(private http: HttpClient, private router:Router) { 
+  private payloadData: any;
+
+  constructor(private http: HttpClient, private router: Router) {
+    const token = this.getToken();
     this.payloadData = this.decodeToken();
   }
 
@@ -23,61 +24,72 @@ export class AuthService {
     return this.http.post<any>(`${this.apiUrl}register`, user);
   }
 
-  login(Email:string, Password:string): Observable<any> {
-    console.log({Email, Password});
-    return this.http.post<any>(`${this.apiUrl}login`, {Email, Password});
+  login(Email: string, Password: string): Observable<any> {
+    console.log({ Email, Password });
+    return this.http.post<any>(`${this.apiUrl}login`, { Email, Password });
   }
 
-  getAll():Observable<any>{
+  getAll(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}`);
   }
-
-  storeToken(token:string){
-    localStorage.setItem('token', token);
+  
+  deleteUser(userId: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/${userId}`);
   }
 
+  storeToken(token: string) {
+    localStorage.setItem('token', token);
+  }
 
   getToken() {
     return localStorage.getItem('token');
   }
 
-  isLoggedIn():boolean{
+  isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
   }
 
-  logout(){
+  logout() {
     localStorage.clear();
+    this.payloadData = null;
     this.router.navigate(['login']);
     // localStorage.removeItem('token');, private route:Router
   }
 
-  decodeToken(){
+  decodeToken() {
     const token = this.getToken()!;
     const jwthelper = new JwtHelperService();
     console.log(jwthelper.decodeToken(token));
     return jwthelper.decodeToken(token);
   }
 
-  getRoleFromToken(){
-    if(this.payloadData){
-      
-      return this.payloadData.role;
-    }
+
+  getRoleFromToken() {
+    return this.decodeToken().role;
   }
 
-  getNameFromToken(){
-    if(this.payloadData)
-    return this.payloadData.unique_name;
+  getNameFromToken() {
+    return this.decodeToken().unique_name;
   }
 
-  getEmailFromToken(){
-    if(this.payloadData)
-    return this.payloadData.email;
+  getEmailFromToken() {
+    return this.decodeToken().email;
   }
 
-  deleteUser(userId: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/${userId}`);
+  isAdmin(): boolean {
+    console.log(this.payloadData.role);
+    const temp: string = this.decodeToken().role;
+    return temp === 'Admin';
   }
 
+  isEmployee(): boolean {
+    const temp: string = this.decodeToken().role;
+    return temp === 'Employee';
+  }
+
+  isAccounts(): boolean {
+    const temp: string = this.decodeToken().role;
+    return temp === 'Accounts';
+  }
 
 }

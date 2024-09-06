@@ -12,13 +12,13 @@ export class UserStoreService {
 
   constructor() { }
 
-  public getRole() { return this.role$.asObservable() }
-  public setRole(role: string) { this.role$.next(role) }
+  public getRole() { return this.role$.asObservable(); }
+  public setRole(role: string) { this.role$.next(role); }
 
-  public getName() { return this.fullName$.asObservable() }
-  public setName(unique_name: string){ this.fullName$.next(unique_name) }
+  public getName() { return this.fullName$.asObservable(); }
+  public setName(unique_name: string) { this.fullName$.next(unique_name); }
 
-  public getEmail() { return this.email$.asObservable() }
-  public setEmail(email: string){ this.email$.next(email) }
+  public getEmail() { return this.email$.asObservable(); }
+  public setEmail(email: string) { this.email$.next(email); }
 
 }
