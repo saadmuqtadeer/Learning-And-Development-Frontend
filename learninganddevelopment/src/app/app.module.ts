@@ -7,10 +7,11 @@ import { RegisterComponent } from './components/authentication/register/register
 import { ForgotpasswordComponent } from './components/authentication/forgotpassword/forgotpassword.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
-import { SidebarComponent } from './components/Layout/sidebar/sidebar.component';
-import { NavbarComponent } from './components/Layout/navbar/navbar.component';
+// import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { LayoutComponent } from './components/admin/layout/layout.component';
+import { DashboardComponent } from './components/admin/views/dashboard/dashboard.component';
+import { TrainingRequestsComponent } from './components/admin/views/training-requests/training-requests.component';
 // import { NgToastModule } from 'ng-angular-popup';
 
 @NgModule({
@@ -19,9 +20,9 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     LoginComponent,
     RegisterComponent,
     ForgotpasswordComponent,
+    LayoutComponent,
     DashboardComponent,
-    SidebarComponent,
-    NavbarComponent
+    TrainingRequestsComponent
   ],
   imports: [
     BrowserModule,
