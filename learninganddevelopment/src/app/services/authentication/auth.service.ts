@@ -75,4 +75,9 @@ export class AuthService {
     return this.payloadData.email;
   }
 
+  deleteUser(userId: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/${userId}`);
+  }
+
+
 }
