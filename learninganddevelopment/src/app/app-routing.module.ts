@@ -7,9 +7,12 @@ import { ForgotpasswordComponent } from './components/authentication/forgotpassw
 import { LoginComponent } from './components/authentication/login/login.component';
 import { RegisterComponent } from './components/authentication/register/register.component';
 import { AuthGuard } from './guards/auth.guard';
+import { AccountsDashboardComponent } from './components/accounts/views/accounts-dashboard/accounts-dashboard.component';
+import { TrainingRequestComponent } from './components/accounts/views/training-request/training-request.component';
+import { AccountsLayoutComponent } from './components/accounts/accounts-layout/accounts-layout.component';
 
 const routes: Routes = [
-  {'path': '','component': RegisterComponent},
+  {'path': 'register','component': RegisterComponent},
   {'path': 'login','component': LoginComponent},
   {'path':'forgotpassword','component':ForgotpasswordComponent},
  // {'path':'dashboard-admin','component':DashboardComponent, canActivate:[AuthGuard],ch}
@@ -19,6 +22,14 @@ const routes: Routes = [
   children: [
     { path: 'dashboard', component: DashboardComponent }, // Child route (dashboard)
     {path:'training-requests',component:TrainingRequestsComponent}
+  ],
+},
+{
+  path: 'accounts', // Base path for the admin section
+  component: AccountsLayoutComponent, // Layout component contains the <router-outlet>
+  children: [
+    { path: 'dashboard', component: AccountsDashboardComponent}, // Child route (dashboard)
+    {path:'training-request',component:TrainingRequestComponent}
   ],
 }
 ];
