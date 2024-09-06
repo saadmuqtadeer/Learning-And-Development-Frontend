@@ -12,6 +12,9 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { LayoutComponent } from './components/admin/layout/layout.component';
 import { DashboardComponent } from './components/admin/views/dashboard/dashboard.component';
 import { TrainingRequestsComponent } from './components/admin/views/training-requests/training-requests.component';
+import { TrainingRequestComponent } from './components/accounts/views/training-request/training-request.component';
+import { AccountsDashboardComponent } from './components/accounts/views/accounts-dashboard/accounts-dashboard.component';
+import { AccountsLayoutComponent } from './components/accounts/accounts-layout/accounts-layout.component';
 // import { NgToastModule } from 'ng-angular-popup';
 
 @NgModule({
@@ -22,7 +25,10 @@ import { TrainingRequestsComponent } from './components/admin/views/training-req
     ForgotpasswordComponent,
     LayoutComponent,
     DashboardComponent,
-    TrainingRequestsComponent
+    TrainingRequestsComponent,
+    TrainingRequestComponent,
+    AccountsDashboardComponent,
+    AccountsLayoutComponent
   ],
   imports: [
     BrowserModule,
