@@ -15,6 +15,8 @@ import { TrainingRequestsComponent } from './components/admin/views/training-req
 import { TrainingRequestComponent } from './components/accounts/views/training-request/training-request.component';
 import { AccountsDashboardComponent } from './components/accounts/views/accounts-dashboard/accounts-dashboard.component';
 import { AccountsLayoutComponent } from './components/accounts/accounts-layout/accounts-layout.component';
+import { EmployeeLayoutComponent } from './components/employee/employee-layout/employee-layout.component';
+import { EmployeeDashboardComponent } from './components/employee/views/employee-dashboard/employee-dashboard.component';
 // import { NgToastModule } from 'ng-angular-popup';
 
 @NgModule({
@@ -28,7 +30,9 @@ import { AccountsLayoutComponent } from './components/accounts/accounts-layout/a
     TrainingRequestsComponent,
     TrainingRequestComponent,
     AccountsDashboardComponent,
-    AccountsLayoutComponent
+    AccountsLayoutComponent,
+    EmployeeLayoutComponent,
+    EmployeeDashboardComponent
   ],
   imports: [
     BrowserModule,
