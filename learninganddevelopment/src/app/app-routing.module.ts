@@ -12,6 +12,9 @@ import { TrainingRequestComponent } from './components/accounts/views/training-r
 import { AccountsLayoutComponent } from './components/accounts/accounts-layout/accounts-layout.component';
 import { EmployeeLayoutComponent } from './components/employee/employee-layout/employee-layout.component';
 import { EmployeeDashboardComponent } from './components/employee/views/employee-dashboard/employee-dashboard.component';
+import { ELearningComponent } from './components/employee/views/e-learning/e-learning.component';
+import { LiveSessionsComponent } from './components/employee/views/live-sessions/live-sessions.component';
+import { EmployeeFeedbackComponent } from './components/employee/views/employee-feedback/employee-feedback.component';
 
 const routes: Routes = [
   {'path': 'register','component': RegisterComponent},
@@ -37,7 +40,10 @@ const routes: Routes = [
   path: 'employee', 
   component: EmployeeLayoutComponent, 
   children: [
-    { path: 'dashboard', component: EmployeeDashboardComponent}
+    {path: 'dashboard', component: EmployeeDashboardComponent},
+    {path:'e-learning', component:ELearningComponent},
+    {path:'live-sessions',component:LiveSessionsComponent},
+    {path:'feedback',component:EmployeeFeedbackComponent}
   ],
 }
 ];

@@ -17,6 +17,9 @@ import { AccountsDashboardComponent } from './components/accounts/views/accounts
 import { AccountsLayoutComponent } from './components/accounts/accounts-layout/accounts-layout.component';
 import { EmployeeLayoutComponent } from './components/employee/employee-layout/employee-layout.component';
 import { EmployeeDashboardComponent } from './components/employee/views/employee-dashboard/employee-dashboard.component';
+import { ELearningComponent } from './components/employee/views/e-learning/e-learning.component';
+import { LiveSessionsComponent } from './components/employee/views/live-sessions/live-sessions.component';
+import { EmployeeFeedbackComponent } from './components/employee/views/employee-feedback/employee-feedback.component';
 // import { NgToastModule } from 'ng-angular-popup';
 
 @NgModule({
@@ -32,7 +35,10 @@ import { EmployeeDashboardComponent } from './components/employee/views/employee
     AccountsDashboardComponent,
     AccountsLayoutComponent,
     EmployeeLayoutComponent,
-    EmployeeDashboardComponent
+    EmployeeDashboardComponent,
+    ELearningComponent,
+    LiveSessionsComponent,
+    EmployeeFeedbackComponent
   ],
   imports: [
     BrowserModule,
