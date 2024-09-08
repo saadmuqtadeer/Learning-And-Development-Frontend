@@ -7,7 +7,6 @@ import { RegisterComponent } from './components/authentication/register/register
 import { ForgotpasswordComponent } from './components/authentication/forgotpassword/forgotpassword.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-// import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { LayoutComponent } from './components/admin/layout/layout.component';
 import { DashboardComponent } from './components/admin/views/dashboard/dashboard.component';
@@ -17,9 +16,11 @@ import { AccountsDashboardComponent } from './components/accounts/views/accounts
 import { AccountsLayoutComponent } from './components/accounts/accounts-layout/accounts-layout.component';
 import { EmployeeLayoutComponent } from './components/employee/employee-layout/employee-layout.component';
 import { EmployeeDashboardComponent } from './components/employee/views/employee-dashboard/employee-dashboard.component';
+import { ELearningComponent } from './components/employee/views/e-learning/e-learning.component';
+import { LiveSessionsComponent } from './components/employee/views/live-sessions/live-sessions.component';
+import { EmployeeFeedbackComponent } from './components/employee/views/employee-feedback/employee-feedback.component';
 import { UnauthorizedComponent } from './components/authentication/unauthorized/unauthorized.component';
 import { PagenotfoundComponent } from './components/authentication/pagenotfound/pagenotfound.component';
-// import { NgToastModule } from 'ng-angular-popup';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,9 @@ import { PagenotfoundComponent } from './components/authentication/pagenotfound/
     AccountsLayoutComponent,
     EmployeeLayoutComponent,
     EmployeeDashboardComponent,
+    ELearningComponent,
+    LiveSessionsComponent,
+    EmployeeFeedbackComponent,
     UnauthorizedComponent,
     PagenotfoundComponent
   ],
@@ -43,7 +47,7 @@ import { PagenotfoundComponent } from './components/authentication/pagenotfound/
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    // NgToastModule,
+    // NgToastModule,  // Uncomment if used
   ],
   providers: [
     {

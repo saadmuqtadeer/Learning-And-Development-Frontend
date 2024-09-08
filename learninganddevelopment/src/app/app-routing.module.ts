@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { DashboardComponent } from './components/admin/views/dashboard/dashboard.component';
 import { LayoutComponent } from './components/admin/layout/layout.component';
 import { TrainingRequestsComponent } from './components/admin/views/training-requests/training-requests.component';
@@ -18,46 +19,50 @@ import { EmployeeDashboardComponent } from './components/employee/views/employee
 import { EmployeeGuard } from './guards/employee.guard';
 import { UnauthorizedComponent } from './components/authentication/unauthorized/unauthorized.component';
 import { PagenotfoundComponent } from './components/authentication/pagenotfound/pagenotfound.component';
+import { ELearningComponent } from './components/employee/views/e-learning/e-learning.component';
+import { LiveSessionsComponent } from './components/employee/views/live-sessions/live-sessions.component';
+import { EmployeeFeedbackComponent } from './components/employee/views/employee-feedback/employee-feedback.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'forgot-password', component: ForgotpasswordComponent },
-  { path: 'pagenotfound', component: PagenotfoundComponent },
   { path: 'unauthorized', component: UnauthorizedComponent },
-
-  // {'path':'dashboard-admin','component':DashboardComponent, canActivate:[AuthGuard],ch}
+  { path: 'pagenotfound', component: PagenotfoundComponent },
+  
   {
-    path: 'admin', component: LayoutComponent, // Layout component contains the <router-outlet>
-    canActivate : [AuthGuard, AdminGuard],
+    path: 'admin',
+    component: LayoutComponent,
+    canActivate: [AuthGuard, AdminGuard],
     children: [
-      { path: 'dashboard', component: DashboardComponent }, // Child route (dashboard)
+      { path: 'dashboard', component: DashboardComponent },
       { path: 'training-requests', component: TrainingRequestsComponent }
-    ],
+    ]
   },
   {
     path: 'accounts',
     component: AccountsLayoutComponent,
-    canActivate : [AuthGuard, AccountsGuard],
+    canActivate: [AuthGuard, AccountsGuard],
     children: [
       { path: 'dashboard', component: AccountsDashboardComponent },
       { path: 'training-request', component: TrainingRequestComponent }
-    ],
+    ]
   },
   {
     path: 'employee',
     component: EmployeeLayoutComponent,
-    canActivate : [AuthGuard, EmployeeGuard],
+    canActivate: [AuthGuard, EmployeeGuard],
     children: [
-      { path: 'dashboard', component: EmployeeDashboardComponent }
-    ],
+      { path: 'dashboard', component: EmployeeDashboardComponent },
+      { path: 'e-learning', component: ELearningComponent },
+      { path: 'live-sessions', component: LiveSessionsComponent },
+      { path: 'feedback', component: EmployeeFeedbackComponent }
+    ]
   },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: '**', redirectTo: 'pagenotfound' },
   
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '**', redirectTo: 'pagenotfound' }
 ];
-
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
