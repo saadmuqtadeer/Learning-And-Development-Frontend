@@ -7,7 +7,6 @@ import { TrainingRequestsComponent } from './components/admin/views/training-req
 import { ForgotpasswordComponent } from './components/authentication/forgotpassword/forgotpassword.component';
 import { LoginComponent } from './components/authentication/login/login.component';
 import { RegisterComponent } from './components/authentication/register/register.component';
-import { EmpDashboardComponent } from './components/employee/emp-dashboard/emp-dashboard.component';
 import { AccountsGuard } from './guards/accounts.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { AuthGuard } from './guards/auth.guard';
@@ -51,7 +50,7 @@ const routes: Routes = [
   {
     path: 'employee',
     component: EmployeeLayoutComponent,
-    canActivate: [AuthGuard, EmployeeGuard],
+   // canActivate: [AuthGuard, EmployeeGuard],
     children: [
       { path: 'dashboard', component: EmployeeDashboardComponent },
       { path: 'e-learning', component: ELearningComponent },
@@ -60,8 +59,8 @@ const routes: Routes = [
     ]
   },
   
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: '**', redirectTo: 'pagenotfound' }
+  // { path: '', redirectTo: 'login', pathMatch: 'full' },
+  // { path: '**', redirectTo: 'pagenotfound' }
 ];
 
 @NgModule({
