@@ -7,11 +7,18 @@ import { RegisterComponent } from './components/authentication/register/register
 import { ForgotpasswordComponent } from './components/authentication/forgotpassword/forgotpassword.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+// import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
-import { EmpDashboardComponent } from './components/employee/emp-dashboard/emp-dashboard.component';
-import { AccountsDashboardComponent } from './components/accounts/accounts-dashboard/accounts-dashboard.component';
-import { UnauthorizedComponent } from './components/authentication/Unauth/unauthorized/unauthorized.component';
+import { LayoutComponent } from './components/admin/layout/layout.component';
+import { DashboardComponent } from './components/admin/views/dashboard/dashboard.component';
+import { TrainingRequestsComponent } from './components/admin/views/training-requests/training-requests.component';
+import { TrainingRequestComponent } from './components/accounts/views/training-request/training-request.component';
+import { AccountsDashboardComponent } from './components/accounts/views/accounts-dashboard/accounts-dashboard.component';
+import { AccountsLayoutComponent } from './components/accounts/accounts-layout/accounts-layout.component';
+import { EmployeeLayoutComponent } from './components/employee/employee-layout/employee-layout.component';
+import { EmployeeDashboardComponent } from './components/employee/views/employee-dashboard/employee-dashboard.component';
+import { UnauthorizedComponent } from './components/authentication/unauthorized/unauthorized.component';
+import { PagenotfoundComponent } from './components/authentication/pagenotfound/pagenotfound.component';
 // import { NgToastModule } from 'ng-angular-popup';
 
 @NgModule({
@@ -20,10 +27,16 @@ import { UnauthorizedComponent } from './components/authentication/Unauth/unauth
     LoginComponent,
     RegisterComponent,
     ForgotpasswordComponent,
+    LayoutComponent,
     DashboardComponent,
-    EmpDashboardComponent,
+    TrainingRequestsComponent,
+    TrainingRequestComponent,
     AccountsDashboardComponent,
-    UnauthorizedComponent
+    AccountsLayoutComponent,
+    EmployeeLayoutComponent,
+    EmployeeDashboardComponent,
+    UnauthorizedComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,

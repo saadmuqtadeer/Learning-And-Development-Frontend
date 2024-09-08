@@ -12,7 +12,7 @@ export class AccountsGuard implements CanActivate {
     if (this.authService.isAccounts()) {
       return true;
     } else {
-      this.router.navigate(['/unauthorized']);
+      this.router.navigate(['unauthorized']);
       return false;
     }
   }

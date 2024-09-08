@@ -13,7 +13,7 @@ export class AdminGuard implements CanActivate {
       return true;
     } else {
       console.log('guard false');
-      this.router.navigate(['/unauthorized']);
+      this.router.navigate(['unauthorized']);
       return false;
     }
   }

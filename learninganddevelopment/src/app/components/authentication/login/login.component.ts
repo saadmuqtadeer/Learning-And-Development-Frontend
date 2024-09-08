@@ -66,13 +66,13 @@ export class LoginComponent  {
         // this.userStore.getRole().subscribe(role => {
           switch (response.role) {
             case "Admin":
-              this.router.navigate(['admin-dashboard']);
+              this.router.navigate(['admin']);
               break;
             case "Employee":
-              this.router.navigate(['employee-dashboard']);
+              this.router.navigate(['employee']);
               break;
             case "Accounts":
-              this.router.navigate(['accounts-dashboard']);
+              this.router.navigate(['accounts']);
               break;
             default:
               console.error('Unknown role:');

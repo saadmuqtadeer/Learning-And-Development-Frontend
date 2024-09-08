@@ -12,7 +12,7 @@ export class EmployeeGuard implements CanActivate {
     if (this.authService.isEmployee()) {
       return true;
     } else {
-      this.router.navigate(['/unauthorized']);
+      this.router.navigate(['unauthorized']);
       return false;
     }
   }
