@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../../services/authentication/auth.service';
-import { UserStoreService } from '../../../services/authentication/user-store.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../../services/authentication/auth.service';
+import { UserStoreService } from '../../../../services/authentication/user-store.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-allusers',
+  templateUrl: './allusers.component.html',
+  styleUrl: './allusers.component.css'
 })
-export class DashboardComponent implements OnInit {
+export class AllusersComponent implements OnInit {
   public users: any = [];
   public Name: string = "";
   public Role: string = "";

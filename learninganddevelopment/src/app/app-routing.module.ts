@@ -22,6 +22,7 @@ import { PagenotfoundComponent } from './components/authentication/pagenotfound/
 import { ELearningComponent } from './components/employee/views/e-learning/e-learning.component';
 import { LiveSessionsComponent } from './components/employee/views/live-sessions/live-sessions.component';
 import { EmployeeFeedbackComponent } from './components/employee/views/employee-feedback/employee-feedback.component';
+import { AllusersComponent } from './components/admin/views/allusers/allusers.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -36,7 +37,8 @@ const routes: Routes = [
     canActivate: [AuthGuard, AdminGuard],
     children: [
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'training-requests', component: TrainingRequestsComponent }
+      { path: 'training-requests', component: TrainingRequestsComponent },
+      { path: 'all-users', component: AllusersComponent }
     ]
   },
   {

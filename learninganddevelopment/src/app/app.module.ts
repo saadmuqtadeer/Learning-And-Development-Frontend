@@ -21,6 +21,8 @@ import { LiveSessionsComponent } from './components/employee/views/live-sessions
 import { EmployeeFeedbackComponent } from './components/employee/views/employee-feedback/employee-feedback.component';
 import { UnauthorizedComponent } from './components/authentication/unauthorized/unauthorized.component';
 import { PagenotfoundComponent } from './components/authentication/pagenotfound/pagenotfound.component';
+import { CommonModule } from '@angular/common';
+import { AllusersComponent } from './components/admin/views/allusers/allusers.component';
 
 @NgModule({
   declarations: [
@@ -40,13 +42,15 @@ import { PagenotfoundComponent } from './components/authentication/pagenotfound/
     LiveSessionsComponent,
     EmployeeFeedbackComponent,
     UnauthorizedComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    AllusersComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    CommonModule
     // NgToastModule,  // Uncomment if used
   ],
   providers: [
