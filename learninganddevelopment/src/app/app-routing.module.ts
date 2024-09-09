@@ -22,6 +22,8 @@ import { ELearningComponent } from './components/employee/views/e-learning/e-lea
 import { LiveSessionsComponent } from './components/employee/views/live-sessions/live-sessions.component';
 import { EmployeeFeedbackComponent } from './components/employee/views/employee-feedback/employee-feedback.component';
 import { AllusersComponent } from './components/admin/views/allusers/allusers.component';
+import { UserDetailComponent } from './components/admin/views/allusers/user-detail/user-detail.component';
+import { UserEditComponent } from './components/admin/views/allusers/user-edit/user-edit.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -29,7 +31,7 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotpasswordComponent },
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: 'pagenotfound', component: PagenotfoundComponent },
-  
+
   {
     path: 'admin',
     component: LayoutComponent,
@@ -37,7 +39,10 @@ const routes: Routes = [
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'training-requests', component: TrainingRequestsComponent },
-      { path: 'all-users', component: AllusersComponent }
+      { path: 'all-users', component: AllusersComponent },
+      { path: 'all-users/user-detail/:id', component: UserDetailComponent },
+      { path: 'all-users/user-edit/:id', component: UserEditComponent },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' } // Redirect to dashboard by default
     ]
   },
   {
@@ -60,7 +65,7 @@ const routes: Routes = [
       { path: 'feedback', component: EmployeeFeedbackComponent }
     ]
   },
-  
+
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'pagenotfound' }
 ];

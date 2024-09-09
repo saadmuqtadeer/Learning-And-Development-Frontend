@@ -1,4 +1,24 @@
-/* Overall Heading Style */
+/* Filter Dropdown Styles */
+.filter-container {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter-container label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.filter-container select {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+/* Existing table styles */
 .table-heading {
     font-size: 1.5rem;
     font-weight: bold;
@@ -7,14 +27,12 @@
     text-align: center;
 }
 
-/* Table Container */
 .table-responsive {
     margin: 0 auto;
     max-width: 100%;
     overflow-x: auto;
 }
 
-/* Table Styles */
 .employee-table {
     width: 100%;
     border-collapse: collapse;
@@ -53,7 +71,6 @@
     background-color: #fff;
 }
 
-/* Button Styles */
 .btn {
     border-radius: 4px;
     font-size: 0.875rem;
@@ -94,7 +111,6 @@
     border-color: #bd2130;
 }
 
-/* Responsive Adjustments */
 @media (max-width: 767.98px) {
 
     .employee-table th,

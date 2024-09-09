@@ -1,0 +1,14 @@
+<h2 class="text-center mb-4">User Detail</h2>
+<div *ngIf="user">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h4 class="card-title mb-3">First Name: {{ user.firstName }}</h4>
+      <h4 class="card-title mb-3">Last Name: {{ user.lastName }}</h4>
+      <p class="card-text"><strong>Role:</strong> {{ user.role }}</p>
+      <p class="card-text"><strong>Email:</strong> {{ user.email }}</p>
+      <p class="card-text"><strong>Phone:</strong> {{ user.phoneNumber }}</p>
+      <p class="card-text"><strong>Security Question:</strong> {{ user.securityQuestion }}</p>
+      <a routerLink="/admin/all-users" class="btn btn-primary">Back to List</a>
+    </div>
+  </div>
+</div>

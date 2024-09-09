@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/authentication/login/login.component';
 import { RegisterComponent } from './components/authentication/register/register.component';
 import { ForgotpasswordComponent } from './components/authentication/forgotpassword/forgotpassword.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { LayoutComponent } from './components/admin/layout/layout.component';
@@ -23,6 +23,8 @@ import { UnauthorizedComponent } from './components/authentication/unauthorized/
 import { PagenotfoundComponent } from './components/authentication/pagenotfound/pagenotfound.component';
 import { CommonModule } from '@angular/common';
 import { AllusersComponent } from './components/admin/views/allusers/allusers.component';
+import { UserEditComponent } from './components/admin/views/allusers/user-edit/user-edit.component';
+import { UserDetailComponent } from './components/admin/views/allusers/user-detail/user-detail.component';
 
 @NgModule({
   declarations: [
@@ -43,14 +45,17 @@ import { AllusersComponent } from './components/admin/views/allusers/allusers.co
     EmployeeFeedbackComponent,
     UnauthorizedComponent,
     PagenotfoundComponent,
-    AllusersComponent
+    AllusersComponent,
+    UserEditComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    FormsModule
     // NgToastModule,  // Uncomment if used
   ],
   providers: [

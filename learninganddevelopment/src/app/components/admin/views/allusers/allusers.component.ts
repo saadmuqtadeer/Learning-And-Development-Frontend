@@ -6,52 +6,52 @@ import { UserStoreService } from '../../../../services/authentication/user-store
 @Component({
   selector: 'app-allusers',
   templateUrl: './allusers.component.html',
-  styleUrl: './allusers.component.css'
+  styleUrls: ['./allusers.component.css']
 })
 export class AllusersComponent implements OnInit {
-  public users: any = [];
-  public Name: string = "";
-  public Role: string = "";
-  public Email: string = "";
+  public users: any[] = [];
+  public filteredUsers: any[] = [];
+  public selectedRole: string = '';
 
   constructor(private auth: AuthService, private userStore: UserStoreService, private router: Router) { }
 
-  logout() {
-    this.auth.logout();
+  ngOnInit() {
+    this.fetchUsers(); // Fetch users and initialize filters
   }
 
-  ngOnInit() {
+  fetchUsers() {
     this.auth.getAll().subscribe({
       next: (response) => {
         this.users = response;
+        this.filteredUsers = [...this.users]; // Initially show all users
         console.log('GET request successful:', response);
       },
       error: (err) => {
         console.error('Error occurred during GET request:', err);
       }
     });
+  }
 
-    this.userStore.getName().subscribe(val => {
-      this.Name = val || this.auth.getNameFromToken();
-    });
+  filterByRole() {
+    this.applyFilter();
+  }
 
-    this.userStore.getRole().subscribe(val => {
-      this.Role = val || this.auth.getRoleFromToken();
-    });
-
-    this.userStore.getEmail().subscribe(val => {
-      this.Email = val || this.auth.getEmailFromToken();
-    });
+  applyFilter() {
+    console.log('Applying filter with selectedRole:', this.selectedRole); // Debug log
+    if (this.selectedRole === '') {
+      this.filteredUsers = [...this.users]; // Reset filter
+    } else {
+      this.filteredUsers = this.users.filter(user => user.role === this.selectedRole);
+    }
+    console.log('Filtered Users:', this.filteredUsers); // Debug log
   }
 
   viewUser(userId: number) {
-    // Navigate to user detail page
-    this.router.navigate(['/user-detail', userId]);
+    this.router.navigate([`/admin/all-users/user-detail/${userId}`]);
   }
 
   editUser(userId: number) {
-    // Navigate to user edit page
-    this.router.navigate(['/user-edit', userId]);
+    this.router.navigate([`/admin/all-users/user-edit/${userId}`]);
   }
 
   deleteUser(userId: number) {
@@ -59,7 +59,7 @@ export class AllusersComponent implements OnInit {
       this.auth.deleteUser(userId).subscribe({
         next: (response) => {
           console.log('User deleted successfully:', response);
-          this.ngOnInit(); // Refresh the list
+          this.fetchUsers(); // Refresh the list without resetting filters
         },
         error: (err) => {
           console.error('Error occurred during DELETE request:', err);
