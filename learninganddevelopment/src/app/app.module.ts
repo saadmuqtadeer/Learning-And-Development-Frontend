@@ -53,7 +53,6 @@ import { UserDetailComponent } from './components/admin/views/allusers/user-deta
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    CommonModule,
     HttpClientModule,
     CommonModule,
     FormsModule
