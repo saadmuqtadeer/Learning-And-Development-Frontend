@@ -1,1 +1,82 @@
-<p>training-request works!</p>
+<h2 style="text-align: center; color: black; font-family: 'Courier New', Courier, monospace;">
+    Training Request Form
+</h2>
+<form (ngSubmit)="submitRequest()" #trainingRequestForm="ngForm">
+    <!-- Requestor Information -->
+    <fieldset>
+        <legend>Requestor Information</legend>
+
+        <div class="form-group">
+            <label for="requestorName">Requestor's Name</label>
+            <input id="requestorName" [(ngModel)]="request.requestorName" name="requestorName" class="form-control"
+                readonly />
+        </div>
+
+        <div class="form-group">
+            <label for="requestorEmail">Requestor's Email</label>
+            <input id="requestorEmail" [(ngModel)]="request.requestorEmail" name="requestorEmail" type="email"
+                class="form-control" readonly />
+        </div>
+
+        <div class="form-group">
+            <label for="department">Department</label>
+            <input id="department" [(ngModel)]="request.department" name="department" class="form-control" required />
+        </div>
+    </fieldset>
+
+    <!-- Training Details -->
+    <fieldset>
+        <legend>Training Details</legend>
+
+        <div class="form-group">
+            <label for="trainingTitle">Training Title</label>
+            <input id="trainingTitle" [(ngModel)]="request.trainingTitle" name="trainingTitle" class="form-control"
+                required />
+        </div>
+
+        <div class="form-group">
+            <label for="trainingDescription">Training Description</label>
+            <textarea id="trainingDescription" [(ngModel)]="request.trainingDescription" name="trainingDescription"
+                class="form-control" rows="4" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="numberOfEmployees">Number of Employees</label>
+            <input id="numberOfEmployees" [(ngModel)]="request.numberOfEmployees" name="numberOfEmployees" type="number"
+                class="form-control" required />
+        </div>
+
+        <div class="form-group">
+            <label for="technicalSkills">Technical Skill Set Required</label>
+            <input id="technicalSkills" [(ngModel)]="request.technicalSkills" name="technicalSkills"
+                class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="duration">Duration of Training (in days)</label>
+            <input id="duration" [(ngModel)]="request.duration" name="duration" type="number" class="form-control"
+                required />
+        </div>
+
+        <div class="form-group">
+            <label for="preferredStartDate">Preferred Start Date</label>
+            <input id="preferredStartDate" [(ngModel)]="request.preferredStartDate" name="preferredStartDate"
+                type="date" class="form-control" required />
+        </div>
+
+        <div class="form-group">
+            <label for="trainingLocation">Training Location</label>
+            <input id="trainingLocation" [(ngModel)]="request.trainingLocation" name="trainingLocation"
+                class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="specialRequirements">Special Requirements</label>
+            <textarea id="specialRequirements" [(ngModel)]="request.specialRequirements" name="specialRequirements"
+                class="form-control" rows="4"></textarea>
+        </div>
+    </fieldset>
+
+    <button type="submit" class="btn btn-primary m-2">Submit Request</button>
+    <a routerLink="/home" class="btn btn-secondary">Cancel</a>
+</form>

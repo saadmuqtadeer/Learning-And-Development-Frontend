@@ -3,13 +3,12 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { user } from '../../models/authentication/user';
-import { JwtHelperService } from '@auth0/angular-jwt'
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
 
   private apiUrl = 'http://localhost:5000/api/auth/';
   private payloadData: any;
@@ -32,7 +31,7 @@ export class AuthService {
   getAll(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}`);
   }
-  
+
   deleteUser(userId: number): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}${userId}`);
   }
@@ -61,7 +60,6 @@ export class AuthService {
     localStorage.clear();
     this.payloadData = null;
     this.router.navigate(['login']);
-    // localStorage.removeItem('token');, private route:Router
   }
 
   decodeToken() {
@@ -70,7 +68,6 @@ export class AuthService {
     console.log(jwthelper.decodeToken(token));
     return jwthelper.decodeToken(token);
   }
-
 
   getRoleFromToken() {
     return this.decodeToken().role;
@@ -99,4 +96,14 @@ export class AuthService {
     return temp === 'Accounts';
   }
 
+  // New method to get user details from token
+  getUserDetails(): any {
+    const decodedToken = this.decodeToken();
+    return {
+      name: decodedToken.unique_name,
+      email: decodedToken.email,
+      department: decodedToken.department || '', // Ensure this field exists in your token
+      role: decodedToken.role
+    };
+  }
 }

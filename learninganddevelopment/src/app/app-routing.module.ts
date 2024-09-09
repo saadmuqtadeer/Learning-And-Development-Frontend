@@ -51,7 +51,8 @@ const routes: Routes = [
     canActivate: [AuthGuard, AccountsGuard],
     children: [
       { path: 'dashboard', component: AccountsDashboardComponent },
-      { path: 'training-request', component: TrainingRequestComponent }
+      { path: 'training-request', component: TrainingRequestComponent },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   },
   {
