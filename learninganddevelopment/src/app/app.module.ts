@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/authentication/login/login.component';
 import { RegisterComponent } from './components/authentication/register/register.component';
 import { ForgotpasswordComponent } from './components/authentication/forgotpassword/forgotpassword.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { LayoutComponent } from './components/admin/layout/layout.component';
@@ -22,6 +22,9 @@ import { EmployeeFeedbackComponent } from './components/employee/views/employee-
 import { UnauthorizedComponent } from './components/authentication/unauthorized/unauthorized.component';
 import { PagenotfoundComponent } from './components/authentication/pagenotfound/pagenotfound.component';
 import { CommonModule } from '@angular/common';
+import { AllusersComponent } from './components/admin/views/allusers/allusers.component';
+import { UserEditComponent } from './components/admin/views/allusers/user-edit/user-edit.component';
+import { UserDetailComponent } from './components/admin/views/allusers/user-detail/user-detail.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,10 @@ import { CommonModule } from '@angular/common';
     LiveSessionsComponent,
     EmployeeFeedbackComponent,
     UnauthorizedComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    AllusersComponent,
+    UserEditComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +55,8 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     CommonModule,
     HttpClientModule,
+    CommonModule,
+    FormsModule
     // NgToastModule,  // Uncomment if used
   ],
   providers: [

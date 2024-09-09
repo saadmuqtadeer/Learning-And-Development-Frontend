@@ -34,7 +34,15 @@ export class AuthService {
   }
   
   deleteUser(userId: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/${userId}`);
+    return this.http.delete<any>(`${this.apiUrl}${userId}`);
+  }
+
+  getUserById(userId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}${userId}`);
+  }
+
+  updateUser(userId: number, userData: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}${userId}`, userData);
   }
 
   storeToken(token: string) {
