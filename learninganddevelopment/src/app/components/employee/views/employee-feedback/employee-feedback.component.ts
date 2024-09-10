@@ -1,7 +1,4 @@
-
 import { Component } from '@angular/core';
-import { Modal } from 'bootstrap';
-
 
 @Component({
   selector: 'app-employee-feedback',
@@ -9,11 +6,5 @@ import { Modal } from 'bootstrap';
   styleUrl: './employee-feedback.component.css'
 })
 export class EmployeeFeedbackComponent {
-  openModal(id:string) {
-    const modalElement = document.getElementById(id);
-    if (modalElement) {
-      const modal = new Modal(modalElement);
-      modal.show();
-    }
-  }
+
 }
