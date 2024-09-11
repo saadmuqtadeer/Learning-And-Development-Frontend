@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../../services/authentication/auth.service';
 import { Modal } from 'bootstrap';
+import { TrainingRequestService } from '../../../../services/accounts/training-request.service'; // Update the import
 
 @Component({
   selector: 'app-training-request',
@@ -12,7 +13,7 @@ export class TrainingRequestComponent implements OnInit {
   requestorInfo: any = {};
   activeTab: string = 'all'; 
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private trainingRequestService: TrainingRequestService) { }
 
   ngOnInit() {
     this.loadRequestorInfo();
@@ -28,15 +29,26 @@ export class TrainingRequestComponent implements OnInit {
 
   submitRequest() {
     console.log('Training Request Submitted:', this.request);
-    // Logic to send the request data to the server
+    
+    // Call the sendRequest method from the service and handle the response
+    this.trainingRequestService.sendRequest(this.request).subscribe({
+      next: (response) => {
+        console.log('Request sent successfully:', response);
+        // Handle success, maybe navigate or show success message
+      },
+      error: (error) => {
+        console.error('Error in sending request:', error);
+        // Handle error, show an error message
+      }
+    });
   }
 
-   // Method to change active tab
-   setActiveTab(tab: string) {
+  // Method to change active tab
+  setActiveTab(tab: string) {
     this.activeTab = tab;
   }
 
-  openModal(id:string) {
+  openModal(id: string) {
     const modalElement = document.getElementById(id);
     if (modalElement) {
       const modal = new Modal(modalElement);
