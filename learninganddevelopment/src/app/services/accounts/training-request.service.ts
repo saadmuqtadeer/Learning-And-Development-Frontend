@@ -7,12 +7,12 @@ import { trainingRequest } from '../../models/Application/trainingRequest';
   providedIn: 'root'
 })
 export class TrainingRequestService {
-  private apiUrl = 'https://your-backend-api-url/api/';  // Set your API base URL
+  private apiUrl = 'http://localhost:5001';  // Set your API base URL
 
   constructor(private http: HttpClient, private router: Router) { }
 
   public sendRequest(form: any) {
     console.log('Sending Request:', form);
-    return this.http.post<any>(`${this.apiUrl}trainingRequest`, form);
+    return this.http.post<any>(`${this.apiUrl}training-request`, form);
   }
 }

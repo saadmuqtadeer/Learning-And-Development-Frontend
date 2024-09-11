@@ -55,4 +55,75 @@ export class TrainingRequestComponent implements OnInit {
       modal.show();
     }
   }
+  allRequests = [
+    {
+      requestorName: 'Airi Satou',
+      department: 'Accountant',
+      trainingTitle: 'Accounting Training',
+      status: 'Pending'
+    },
+    {
+      requestorName: 'Ashton Cox',
+      department: 'Junior Technical Author',
+      trainingTitle: 'Technical Writing',
+      status: 'Accepted'
+    },
+    {
+      requestorName: 'Bradley Greer',
+      department: 'Software Developer',
+      trainingTitle: 'Advanced JavaScript',
+      status: 'Rejected'
+    }
+  ];
+  pendingRequests = [
+    {
+      name: 'Airi Satou',
+      department: 'Accounting',
+      title: 'Tokyo'
+    },
+    {
+      name: 'Ashton Cox',
+      department: 'HR',
+      title: 'San Francisco'
+    },
+    {
+      name: 'John Doe',
+      department: 'IT',
+      title: 'London'
+    }
+  ];
+  acceptedRequests = [
+    {
+      name: 'Airi Satou',
+      department: 'Accounting',
+      title: 'Tokyo'
+    },
+    {
+      name: 'Ashton Cox',
+      department: 'HR',
+      title: 'San Francisco'
+    },
+    {
+      name: 'John Doe',
+      department: 'IT',
+      title: 'London'
+    }
+  ];
+  rejectedRequests = [
+    {
+      name: 'Airi Satou',
+      department: 'Accounting',
+      title: 'Tokyo'
+    },
+    {
+      name: 'Ashton Cox',
+      department: 'HR',
+      title: 'San Francisco'
+    },
+    {
+      name: 'John Doe',
+      department: 'IT',
+      title: 'London'
+    }
+  ];
 }
