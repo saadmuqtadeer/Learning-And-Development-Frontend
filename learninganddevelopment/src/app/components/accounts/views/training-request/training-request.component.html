@@ -267,10 +267,18 @@
                   </div>
                 </div>
                 <div class="table-responsive">
-                  <div id="add-row_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                  <div
+                    id="add-row_wrapper"
+                    class="dataTables_wrapper container-fluid dt-bootstrap4"
+                  >
                     <div class="row">
                       <div class="col-sm-12">
-                        <table id="add-row" class="display table table-striped table-hover dataTable" role="grid" aria-describedby="add-row_info">
+                        <table
+                          id="add-row"
+                          class="display table table-striped table-hover dataTable"
+                          role="grid"
+                          aria-describedby="add-row_info"
+                        >
                           <thead>
                             <tr role="row">
                               <th style="width: 50px">#</th>
@@ -282,18 +290,27 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr *ngFor="let request of allRequests; let i = index" role="row" [class.odd]="i % 2 !== 0" [class.even]="i % 2 === 0">
+                            <tr
+                              *ngFor="let request of allRequests; let i = index"
+                              role="row"
+                              [class.odd]="i % 2 !== 0"
+                              [class.even]="i % 2 === 0"
+                            >
                               <td>{{ i + 1 }}</td>
                               <td>{{ request.requestorName }}</td>
                               <td>{{ request.department }}</td>
                               <td>{{ request.trainingTitle }}</td>
                               <td>
-                                <button class="btn"
+                                <button
+                                  class="btn"
                                   [ngClass]="{
-                                    ' btn-warning': request.status === 'Pending',
-                                    ' btn-success': request.status === 'Accepted',
+                                    ' btn-warning':
+                                      request.status === 'Pending',
+                                    ' btn-success':
+                                      request.status === 'Accepted',
                                     ' btn-danger': request.status === 'Rejected'
-                                  }">
+                                  }"
+                                >
                                   {{ request.status }}
                                 </button>
                               </td>
@@ -316,12 +333,12 @@
                     </div>
                   </div>
                 </div>
-                
               </div>
             </div>
           </div>
         </div>
       </div>
+
 
       <!-- Pending Requests Tab -->
       <div
@@ -332,67 +349,332 @@
         }"
         *ngIf="activeTab === 'pending'"
       >
-        <div class="">
-          <div class="card">
-            <div class="card-header">
-              <h4><strong>Pending Requests</strong></h4>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="display table table-striped table-hover" role="grid">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Name</th>
-                      <th>Department</th>
-                      <th>Title</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <!-- Use *ngFor to dynamically populate rows -->
-                    <tr *ngFor="let request of pendingRequests; let i = index">
-                      <td>{{ i + 1 }}</td>
-                      <td>{{ request.name }}</td>
-                      <td>{{ request.department }}</td>
-                      <td>{{ request.title }}</td>
-                      <td>
-                        <div class="form-button-action">
-                          <button
-                            type="button"
-                            data-bs-toggle="tooltip"
-                            title="View Task"
-                            class="btn btn-link btn-primary btn-lg"
-                          >
-                            <i class="fa fa-eye"></i>
-                          </button>
-                          <button
-                            type="button"
-                            data-bs-toggle="tooltip"
-                            title="Edit Task"
-                            class="btn btn-link btn-primary btn-lg"
-                          >
-                            <i class="fa fa-edit"></i>
-                          </button>
-                          <button
-                            type="button"
-                            data-bs-toggle="tooltip"
-                            title="Remove"
-                            class="btn btn-link btn-danger"
-                          >
-                            <i class="fa fa-times"></i>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+        <div class="card">
+          <div class="card-header">
+            <h4><strong>Pending Requests</strong></h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table
+                class="display table table-striped table-hover"
+                role="grid"
+              >
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Title</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let request of pendingRequests; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ request.name }}</td>
+                    <td>{{ request.department }}</td>
+                    <td>{{ request.title }}</td>
+                    <td>
+                      <div class="form-button-action">
+                        <!-- View Icon -->
+                        <button
+                          type="button"
+                          class="btn btn-link btn-primary btn-lg"
+                          (click)="viewRequestDetails(request)"
+                        >
+                          <i class="fa fa-eye"></i>
+                        </button>
+                        <!-- Edit Icon -->
+                        <button
+                          type="button"
+                          class="btn btn-link btn-primary btn-lg"
+                          (click)="openEditModal(request)"
+                        >
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <!-- Delete Icon -->
+                        <button
+                          type="button"
+                          class="btn btn-link btn-danger"
+                          (click)="deleteRequest(request)"
+                        >
+                          <i class="fa fa-times"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
-          
         </div>
       </div>
+
+      <!-- Modal for viewing request details -->
+      <!-- View Request Modal -->
+<div
+class="modal fade"
+id="viewRequestModal"
+tabindex="-1"
+role="dialog"
+aria-labelledby="viewRequestLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header bg-primary">
+      <h5 class="modal-title text-white" id="viewRequestLabel">
+        View Training Request Details
+      </h5>
+      <button
+        type="button"
+        class="btn-close text-white"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th scope="row" class="col-4">Requestor's Name</th>
+            <td class="col-8">{{ request.requestorName }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="col-4">Requestor's Email</th>
+            <td class="col-8">{{ request.requestorEmail }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="col-4">Department</th>
+            <td class="col-8">{{ request.department }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="col-4">Training Title</th>
+            <td class="col-8">{{ request.trainingTitle }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="col-4">Training Description</th>
+            <td class="col-8">{{ request.trainingDescription }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="col-4">Number of Employees</th>
+            <td class="col-8">{{ request.numberOfEmployees }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="col-4">Technical Skills Required</th>
+            <td class="col-8">{{ request.technicalSkills }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="col-4">Duration of Training (in days)</th>
+            <td class="col-8">{{ request.duration }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="col-4">Preferred Start Date</th>
+            <td class="col-8">{{ request.preferredStartDate }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="col-4">Training Location</th>
+            <td class="col-8">{{ request.trainingLocation }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="col-4">Special Requirements</th>
+            <td class="col-8">{{ request.specialRequirements }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-outline-primary"
+        data-bs-dismiss="modal"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Edit Request Modal -->
+<div
+  class="modal fade"
+  id="editRequestModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="editRequestLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h5 class="modal-title text-white" id="editRequestLabel">
+          Edit Training Request
+        </h5>
+        <button
+          type="button"
+          class="btn-close text-white"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form
+          (ngSubmit)="submitEditedRequest()"
+          #editTrainingRequestForm="ngForm"
+          class="px-4"
+        >
+          <!-- Requestor Information -->
+          <fieldset>
+            <legend>Requestor Information</legend>
+
+            <div class="form-group">
+              <label for="editRequestorName">Requestor's Name</label>
+              <input
+                id="editRequestorName"
+                [(ngModel)]="request.requestorName"
+                name="requestorName"
+                class="form-control"
+                readonly
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="editRequestorEmail">Requestor's Email</label>
+              <input
+                id="editRequestorEmail"
+                [(ngModel)]="request.requestorEmail"
+                name="requestorEmail"
+                type="email"
+                class="form-control"
+                readonly
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="editDepartment">Department</label>
+              <input
+                id="editDepartment"
+                [(ngModel)]="request.department"
+                name="department"
+                class="form-control"
+                required
+              />
+            </div>
+          </fieldset>
+
+          <!-- Training Details -->
+          <fieldset>
+            <legend>Training Details</legend>
+
+            <div class="form-group">
+              <label for="editTrainingTitle">Training Title</label>
+              <input
+                id="editTrainingTitle"
+                [(ngModel)]="request.trainingTitle"
+                name="trainingTitle"
+                class="form-control"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="editTrainingDescription">Training Description</label>
+              <textarea
+                id="editTrainingDescription"
+                [(ngModel)]="request.trainingDescription"
+                name="trainingDescription"
+                class="form-control"
+                rows="4"
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="editNumberOfEmployees">Number of Employees</label>
+              <input
+                id="editNumberOfEmployees"
+                [(ngModel)]="request.numberOfEmployees"
+                name="numberOfEmployees"
+                type="number"
+                class="form-control"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="editTechnicalSkills">Technical Skill Set Required</label>
+              <input
+                id="editTechnicalSkills"
+                [(ngModel)]="request.technicalSkills"
+                name="technicalSkills"
+                class="form-control"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="editDuration">Duration of Training (in days)</label>
+              <input
+                id="editDuration"
+                [(ngModel)]="request.duration"
+                name="duration"
+                type="number"
+                class="form-control"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="editPreferredStartDate">Preferred Start Date</label>
+              <input
+                id="editPreferredStartDate"
+                [(ngModel)]="request.preferredStartDate"
+                name="preferredStartDate"
+                type="date"
+                class="form-control"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="editTrainingLocation">Training Location</label>
+              <input
+                id="editTrainingLocation"
+                [(ngModel)]="request.trainingLocation"
+                name="trainingLocation"
+                class="form-control"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="editSpecialRequirements">Special Requirements</label>
+              <textarea
+                id="editSpecialRequirements"
+                [(ngModel)]="request.specialRequirements"
+                name="specialRequirements"
+                class="form-control"
+                rows="4"
+              ></textarea>
+            </div>
+          </fieldset>
+
+          <button type="submit" class="btn btn-primary m-2">Save Changes</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
       <!-- Accepted Requests Tab -->
       <div
@@ -406,11 +688,14 @@
         <div class="">
           <div class="card">
             <div class="card-header">
-            <h4><strong>Accepted Requests</strong></h4>
+              <h4><strong>Accepted Requests</strong></h4>
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="display table table-striped table-hover" role="grid">
+                <table
+                  class="display table table-striped table-hover"
+                  role="grid"
+                >
                   <thead>
                     <tr>
                       <th>#</th>
@@ -460,11 +745,14 @@
         <div class="">
           <div class="card">
             <div class="card-header">
-            <h4><strong>Rejected Requests</strong></h4>
+              <h4><strong>Rejected Requests</strong></h4>
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="display table table-striped table-hover" role="grid">
+                <table
+                  class="display table table-striped table-hover"
+                  role="grid"
+                >
                   <thead>
                     <tr>
                       <th>#</th>
@@ -476,7 +764,7 @@
                   </thead>
                   <tbody>
                     <!-- Use *ngFor to dynamically populate rows -->
-                    <tr *ngFor="let request of rejectedRequests; let i = index">
+                    <!-- <tr *ngFor="let request of rejectedRequests; let i = index">
                       <td>{{ i + 1 }}</td>
                       <td>{{ request.name }}</td>
                       <td>{{ request.department }}</td>
@@ -493,7 +781,7 @@
                           </button>
                         </div>
                       </td>
-                    </tr>
+                    </tr> -->
                   </tbody>
                 </table>
               </div>

@@ -12,10 +12,15 @@ export class AuthService {
 
   private apiUrl = 'http://localhost:5000/api/auth/';
   private payloadData: any;
+  private Id: number | null  = null;
 
   constructor(private http: HttpClient, private router: Router) {
     const token = this.getToken();
-    this.payloadData = this.decodeToken();
+    if(token != null){
+      this.payloadData = this.decodeToken();
+      this.Id = this.payloadData?.Id || null;
+      
+    }
   }
 
   register(user: user): Observable<any> {
@@ -46,6 +51,8 @@ export class AuthService {
 
   storeToken(token: string) {
     localStorage.setItem('token', token);
+    this.payloadData = this.decodeToken();
+    this.Id = this.payloadData?.Id || null;
   }
 
   getToken() {
@@ -59,6 +66,7 @@ export class AuthService {
   logout() {
     localStorage.clear();
     this.payloadData = null;
+    this.Id = null;
     this.router.navigate(['login']);
   }
 
@@ -96,6 +104,13 @@ export class AuthService {
     return temp === 'Accounts';
   }
 
+  setId(id: number){
+    this.Id = id;
+  }
+
+  getId(id: number){
+    return this.Id;
+  }
   // New method to get user details from token
   getUserDetails(): any {
     const decodedToken = this.decodeToken();
