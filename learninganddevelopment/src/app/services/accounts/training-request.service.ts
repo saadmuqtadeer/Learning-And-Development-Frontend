@@ -19,4 +19,5 @@ export class TrainingRequestService {
   getAllRequests(employeeId: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}training-requests/employee/${employeeId}`);
   }
+  
 }

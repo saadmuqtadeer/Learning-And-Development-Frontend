@@ -1,1 +1,8 @@
 <p>training-requests works!</p>
+<div>
+    <h1>SignalR Messages</h1>
+    <ul *ngIf="messages.length > 0">
+      <li *ngFor="let message of messages">{{ message }}</li>
+    </ul>
+    <p *ngIf="messages.length === 0">No new messages.</p>
+</div>
