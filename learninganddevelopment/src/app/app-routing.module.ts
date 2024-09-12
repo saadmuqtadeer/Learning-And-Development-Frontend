@@ -35,7 +35,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: LayoutComponent,
-    canActivate: [AuthGuard, AdminGuard],
+   // canActivate: [AuthGuard, AdminGuard],
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'training-requests', component: TrainingRequestsComponent },
