@@ -1,17 +1,23 @@
+// src/app/services/accounts/training-request.service.ts
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-
+import { trainingRequest } from '../../models/Application/trainingRequest';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TrainingRequestService {
-  private apiUrl = 'http://localhost:5001/';  // Set your API base URL
+  private apiUrl = 'http://localhost:5001/'; // Adjust as necessary
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient) { }
 
+  sendRequest(request: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}training-request`, request);
+  }
+
+  getAllRequests(employeeId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}training-requests/employee/${employeeId}`);
   public sendRequest(form: any) : Observable<any> {
     console.log('Sending Request:', form);
     return this.http.post<any>(`${this.apiUrl}training-request`, form);

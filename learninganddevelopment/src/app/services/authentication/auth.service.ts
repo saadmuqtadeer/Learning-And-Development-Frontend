@@ -12,14 +12,13 @@ export class AuthService {
 
   private apiUrl = 'http://localhost:5000/api/auth/';
   private payloadData: any;
-  private Id: number | null  = null;
+  private Id: number | null = null; // Initialize Id to null
 
   constructor(private http: HttpClient, private router: Router) {
     const token = this.getToken();
-    if(token != null){
+    if (token) {
       this.payloadData = this.decodeToken();
-      this.Id = this.payloadData?.Id || null;
-      
+      this.Id = this.payloadData?.id || null; // Assign ID from payloadData or set to null if not available
     }
   }
 
@@ -51,8 +50,8 @@ export class AuthService {
 
   storeToken(token: string) {
     localStorage.setItem('token', token);
-    this.payloadData = this.decodeToken();
-    this.Id = this.payloadData?.Id || null;
+    this.payloadData = this.decodeToken(); // Update payloadData when a new token is stored
+    this.Id = this.payloadData?.id || null;
   }
 
   getToken() {
@@ -67,14 +66,18 @@ export class AuthService {
     localStorage.clear();
     this.payloadData = null;
     this.Id = null;
+    this.Id = null;
     this.router.navigate(['login']);
   }
 
   decodeToken() {
-    const token = this.getToken()!;
-    const jwthelper = new JwtHelperService();
-    console.log(jwthelper.decodeToken(token));
-    return jwthelper.decodeToken(token);
+    const token = this.getToken();
+    if (token) {
+      const jwthelper = new JwtHelperService();
+      console.log(jwthelper.decodeToken(token));
+      return jwthelper.decodeToken(token);
+    }
+    return {};
   }
 
   getRoleFromToken() {
@@ -90,35 +93,35 @@ export class AuthService {
   }
 
   isAdmin(): boolean {
-    const temp: string = this.decodeToken().role;
-    return temp === 'Admin';
+    return this.decodeToken().role === 'Admin';
   }
 
   isEmployee(): boolean {
-    const temp: string = this.decodeToken().role;
-    return temp === 'Employee';
+    return this.decodeToken().role === 'Employee';
   }
 
   isAccounts(): boolean {
-    const temp: string = this.decodeToken().role;
-    return temp === 'Accounts';
+    return this.decodeToken().role === 'Accounts';
   }
 
-  setId(id: number){
+  setId(id: number): void {
+    console.log(id);
     this.Id = id;
   }
 
-  getId(id: number){
+  getId(): number | null {
+    console.log(this.Id);
     return this.Id;
   }
-  // New method to get user details from token
+  
   getUserDetails(): any {
     const decodedToken = this.decodeToken();
     return {
       name: decodedToken.unique_name,
       email: decodedToken.email,
-      department: decodedToken.department || '', // Ensure this field exists in your token
-      role: decodedToken.role
+      department: decodedToken.department || '',
+      role: decodedToken.role,
+      id: decodedToken.nameid
     };
   }
 }

@@ -9,11 +9,11 @@ import { UserStoreService } from '../../../services/authentication/user-store.se
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
-}) 
+})
 
-export class LoginComponent  {
+export class LoginComponent {
   loginForm!: FormGroup;
-  private payloadData:any;
+  private payloadData: any;
 
   constructor(
     private auth: AuthService,
@@ -28,15 +28,15 @@ export class LoginComponent  {
       Password: ['', [Validators.required]]
     });
   }
-  validateControl(input:string){
-    return  this.loginForm.get(input)?.invalid && 
-    ((this.loginForm.get(input)?.touched) ||
-    (this.loginForm.get(input)?.dirty))
+  validateControl(input: string) {
+    return this.loginForm.get(input)?.invalid &&
+      ((this.loginForm.get(input)?.touched) ||
+        (this.loginForm.get(input)?.dirty))
   }
-  validateControlError(input:string,errorType:string){
+  validateControlError(input: string, errorType: string) {
     return this.loginForm.get(input)?.hasError(errorType) &&
-   ((this.loginForm.get(input)?.touched) ||
-    (this.loginForm.get(input)?.dirty));
+      ((this.loginForm.get(input)?.touched) ||
+        (this.loginForm.get(input)?.dirty));
   }
 
 
@@ -46,40 +46,33 @@ export class LoginComponent  {
       console.error('Form is invalid');
       return;
     }
-  
+
     const loginData = this.loginForm.value;
     this.loginService.login(loginData.Email, loginData.Password).subscribe({
       next: (response) => {
-        console.log('POST request successful:', response);
-
+        console.log('Login successful:', response);
+        if (response.id) {
+          this.auth.setId(response.id);
+        } else {
+          console.error('ID not present in response:', response);
+        }
         this.auth.storeToken(response.token);
-        // localStorage.setItem("token",response.token);
 
-        // this.payloadData = this.auth.decodeToken();
-        
-        // Set user details in UserStoreService
-        // this.userStore.setRole(this.payloadData.role);
-        // this.userStore.setName(this.payloadData.unique_name);
-        // this.userStore.setEmail(this.payloadData.email);
-  
-        // Redirect based on role
-        // this.userStore.getRole().subscribe(role => {
-          switch (response.role) {
-            case "Admin":
-              this.router.navigate(['admin']);
-              break;
-            case "Employee":
-              this.router.navigate(['employee']);
-              break;
-            case "Accounts":
-              this.router.navigate(['accounts']);
-              break;
-            default:
-              console.error('Unknown role:');
-              this.router.navigate(['unauthorized']);
-              break;
-          }
-        // });
+        switch (response.role) {
+          case "Admin":
+            this.router.navigate(['admin']);
+            break;
+          case "Employee":
+            this.router.navigate(['employee']);
+            break;
+          case "Accounts":
+            this.router.navigate(['accounts']);
+            break;
+          default:
+            console.error('Unknown role:', response.role);
+            this.router.navigate(['unauthorized']);
+            break;
+        }
       },
       error: (err) => {
         console.error('Error occurred during POST request:', err);
@@ -87,8 +80,9 @@ export class LoginComponent  {
     });
   }
 
-  logOut(){
+
+  logOut() {
     this.auth.logout();
   }
-  
+
 }

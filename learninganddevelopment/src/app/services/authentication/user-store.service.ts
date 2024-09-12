@@ -9,6 +9,7 @@ export class UserStoreService {
   private role$ = new BehaviorSubject<string>("");
   private fullName$ = new BehaviorSubject<string>("");
   private email$ = new BehaviorSubject<string>("");
+  private id$ = new BehaviorSubject<number>(0);
 
   constructor() { }
 
