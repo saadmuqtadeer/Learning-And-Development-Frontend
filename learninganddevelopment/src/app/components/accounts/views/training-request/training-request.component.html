@@ -77,7 +77,7 @@
                 >
                   <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
-                      <div class="modal-header bg-primary">
+                      <div class="modal-header bg-dark">
                         <h5
                           class="modal-title text-white"
                           id="sendRequestLabel"
@@ -184,25 +184,25 @@
                             </div>
 
                             <div class="form-group">
-                              <label for="technicalSkills"
+                              <label for="technicalSkillSetRequired"
                                 >Technical Skill Set Required</label
                               >
                               <input
-                                id="technicalSkills"
+                                id="technicalSkillSetRequired"
                                 [(ngModel)]="request.technicalSkills"
-                                name="technicalSkills"
+                                name="technicalSkillSetRequired"
                                 class="form-control"
                               />
                             </div>
 
                             <div class="form-group">
-                              <label for="duration"
+                              <label for="durationInDays"
                                 >Duration of Training (in days)</label
                               >
                               <input
-                                id="duration"
+                                id="durationInDays"
                                 [(ngModel)]="request.duration"
-                                name="duration"
+                                name="durationInDays"
                                 type="number"
                                 class="form-control"
                                 required
@@ -267,10 +267,18 @@
                   </div>
                 </div>
                 <div class="table-responsive">
-                  <div id="add-row_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                  <div
+                    id="add-row_wrapper"
+                    class="dataTables_wrapper container-fluid dt-bootstrap4"
+                  >
                     <div class="row">
                       <div class="col-sm-12">
-                        <table id="add-row" class="display table table-striped table-hover dataTable" role="grid" aria-describedby="add-row_info">
+                        <table
+                          id="training-request"
+                          class="display table table-striped table-hover dataTable"
+                          role="grid"
+                          aria-describedby="training-request_info"
+                        >
                           <thead>
                             <tr role="row">
                               <th style="width: 50px">#</th>
@@ -282,21 +290,39 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr *ngFor="let request of allRequests; let i = index" role="row" [class.odd]="i % 2 !== 0" [class.even]="i % 2 === 0">
+                            <tr
+                              *ngFor="
+                                let request of trainingRequests;
+                                let i = index
+                              "
+                              role="row"
+                              [class.odd]="i % 2 !== 0"
+                              [class.even]="i % 2 === 0"
+                            >
                               <td>{{ i + 1 }}</td>
                               <td>{{ request.requestorName }}</td>
                               <td>{{ request.department }}</td>
                               <td>{{ request.trainingTitle }}</td>
                               <td>
-                                <button class="btn"
+                                <button
+                                  class="btn"
                                   [ngClass]="{
-                                    ' btn-warning': request.status === 'Pending',
-                                    ' btn-success': request.status === 'Accepted',
-                                    ' btn-danger': request.status === 'Rejected'
-                                  }">
-                                  {{ request.status }}
+                                    'btn-warning': request.status === 0,
+                                    'btn-success': request.status === 1,
+                                    'btn-danger': request.status === 2
+                                  }"
+                                >
+                                  <!-- Display status text based on request status -->
+                                  <ng-container [ngSwitch]="request.status">
+                                    <span *ngSwitchCase="0">Pending</span>
+                                    <span *ngSwitchCase="1">Accepted</span>
+                                    <span *ngSwitchCase="2">Rejected</span>
+                                    <span *ngSwitchDefault>Unknown</span>
+                                  </ng-container>
                                 </button>
                               </td>
+                              
+                              
                               <td>
                                 <div class="form-button-action">
                                   <button
@@ -304,6 +330,7 @@
                                     data-bs-toggle="tooltip"
                                     title="View Task"
                                     class="btn btn-link btn-primary btn-lg"
+                                    (click)="viewRequestDetails(request)"
                                   >
                                     <i class="fa fa-eye"></i>
                                   </button>
@@ -316,7 +343,6 @@
                     </div>
                   </div>
                 </div>
-                
               </div>
             </div>
           </div>
@@ -332,67 +358,69 @@
         }"
         *ngIf="activeTab === 'pending'"
       >
-        <div class="">
-          <div class="card">
-            <div class="card-header">
-              <h4><strong>Pending Requests</strong></h4>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="display table table-striped table-hover" role="grid">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Name</th>
-                      <th>Department</th>
-                      <th>Title</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <!-- Use *ngFor to dynamically populate rows -->
-                    <tr *ngFor="let request of pendingRequests; let i = index">
-                      <td>{{ i + 1 }}</td>
-                      <td>{{ request.name }}</td>
-                      <td>{{ request.department }}</td>
-                      <td>{{ request.title }}</td>
-                      <td>
-                        <div class="form-button-action">
-                          <button
-                            type="button"
-                            data-bs-toggle="tooltip"
-                            title="View Task"
-                            class="btn btn-link btn-primary btn-lg"
-                          >
-                            <i class="fa fa-eye"></i>
-                          </button>
-                          <button
-                            type="button"
-                            data-bs-toggle="tooltip"
-                            title="Edit Task"
-                            class="btn btn-link btn-primary btn-lg"
-                          >
-                            <i class="fa fa-edit"></i>
-                          </button>
-                          <button
-                            type="button"
-                            data-bs-toggle="tooltip"
-                            title="Remove"
-                            class="btn btn-link btn-danger"
-                          >
-                            <i class="fa fa-times"></i>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+        <div class="card">
+          <div class="card-header">
+            <h4><strong>Pending Requests</strong></h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table
+                class="display table table-striped table-hover"
+                role="grid"
+              >
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Title</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let request of pendingRequests; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ request.requestorName }}</td>
+                    <td>{{ request.department }}</td>
+                    <td>{{ request.trainingTitle }}</td>
+                    <td>
+                      <div class="form-button-action">
+                        <!-- View Icon -->
+                        <button
+                          type="button"
+                          class="btn btn-link btn-primary btn-lg"
+                          (click)="viewRequestDetails(request)"
+                        >
+                          <i class="fa fa-eye"></i>
+                        </button>
+                        <!-- Edit Icon -->
+                        <button
+                          type="button"
+                          class="btn btn-link btn-primary btn-lg"
+                          data-bs-toggle="modal"
+                          data-bs-target="#addRowModal"
+                          (click)="openEditModal(request)"
+                        >
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <!-- Delete Icon -->
+                        <button
+                          type="button"
+                          class="btn btn-link btn-danger"
+                          (click)="deleteRequest(request)"
+                        >
+                          <i class="fa fa-times"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
-          
         </div>
       </div>
+
 
       <!-- Accepted Requests Tab -->
       <div
@@ -406,11 +434,14 @@
         <div class="">
           <div class="card">
             <div class="card-header">
-            <h4><strong>Accepted Requests</strong></h4>
+              <h4><strong>Accepted Requests</strong></h4>
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="display table table-striped table-hover" role="grid">
+                <table
+                  class="display table table-striped table-hover"
+                  role="grid"
+                >
                   <thead>
                     <tr>
                       <th>#</th>
@@ -422,11 +453,11 @@
                   </thead>
                   <tbody>
                     <!-- Use *ngFor to dynamically populate rows -->
-                    <tr *ngFor="let request of acceptedRequests; let i = index">
+                    <tr *ngFor="let request of approvedRequests; let i = index">
                       <td>{{ i + 1 }}</td>
-                      <td>{{ request.name }}</td>
+                      <td>{{ request.requestorName }}</td>
                       <td>{{ request.department }}</td>
-                      <td>{{ request.title }}</td>
+                      <td>{{ request.trainingTitle }}</td>
                       <td>
                         <div class="form-button-action">
                           <button
@@ -434,6 +465,7 @@
                             data-bs-toggle="tooltip"
                             title="View Task"
                             class="btn btn-link btn-primary btn-lg"
+                            (click)="viewRequestDetails(request)"
                           >
                             <i class="fa fa-eye"></i>
                           </button>
@@ -460,11 +492,14 @@
         <div class="">
           <div class="card">
             <div class="card-header">
-            <h4><strong>Rejected Requests</strong></h4>
+              <h4><strong>Rejected Requests</strong></h4>
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="display table table-striped table-hover" role="grid">
+                <table
+                  class="display table table-striped table-hover"
+                  role="grid"
+                >
                   <thead>
                     <tr>
                       <th>#</th>
@@ -476,11 +511,11 @@
                   </thead>
                   <tbody>
                     <!-- Use *ngFor to dynamically populate rows -->
-                    <tr *ngFor="let request of rejectedRequests; let i = index">
+                     <tr *ngFor="let request of rejectedRequests; let i = index">
                       <td>{{ i + 1 }}</td>
-                      <td>{{ request.name }}</td>
+                      <td>{{ request.requestorName }}</td>
                       <td>{{ request.department }}</td>
-                      <td>{{ request.title }}</td>
+                      <td>{{ request.trainingTitle }}</td>
                       <td>
                         <div class="form-button-action">
                           <button
@@ -488,15 +523,297 @@
                             data-bs-toggle="tooltip"
                             title="View Task"
                             class="btn btn-link btn-primary btn-lg"
+                            (click)="viewRequestDetails(request)"
                           >
                             <i class="fa fa-eye"></i>
                           </button>
                         </div>
                       </td>
-                    </tr>
+                    </tr> 
                   </tbody>
                 </table>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- view request modal -->
+      <div
+        class="modal fade"
+        id="viewRequestModal"
+        tabindex="-1"
+        role="dialog"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Request Details</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <table class="table table-hover table-striped">
+                <tbody>
+                  <tr>
+                    <th scope="row" class="col-4">Requestor's Name</th>
+                    <td class="col-8">{{ selectedRequest?.requestorName }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-4">Requestor's Email</th>
+                    <td class="col-8">{{ selectedRequest?.requestorEmail }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-4">Department</th>
+                    <td class="col-8">{{ selectedRequest?.department }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-4">Training Title</th>
+                    <td class="col-8">{{ selectedRequest?.trainingTitle }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-4">Training Description</th>
+                    <td class="col-8">
+                      {{ selectedRequest?.trainingDescription }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-4">Number of Employees</th>
+                    <td class="col-8">
+                      {{ selectedRequest?.numberOfEmployees }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-4">Technical Skills Required</th>
+                    <td class="col-8">
+                      {{ selectedRequest?.technicalSkills }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-4">
+                      Duration of Training (in days)
+                    </th>
+                    <td class="col-8">{{ selectedRequest?.duration }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-4">Preferred Start Date</th>
+                    <td class="col-8">
+                      {{ selectedRequest?.preferredStartDate }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-4">Training Location</th>
+                    <td class="col-8">
+                      {{ selectedRequest?.trainingLocation }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-4">Special Requirements</th>
+                    <td class="col-8">
+                      {{ selectedRequest?.specialRequirements }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Edit Request Modal -->
+      <div
+        class="modal fade"
+        id="addRowModal"
+        tabindex="-1"
+        role="dialog"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header bg-dark">
+              <h5 class="modal-title text-white" id="sendRequestLabel">
+                Send Training request
+              </h5>
+              <button
+                type="button"
+                class="btn-close text-white"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form
+                (ngSubmit)="submitEditedRequest()"
+                #editTrainingRequestForm="ngForm"
+                class="px-4"
+              >
+                <!-- Requestor Information -->
+                <fieldset>
+                  <legend>Requestor Information</legend>
+
+                  <div class="form-group">
+                    <label for="requestorName">Requestor's Name</label>
+                    <input
+                      id="requestorName"
+                      [(ngModel)]="request.requestorName"
+                      name="requestorName"
+                      class="form-control"
+                      readonly
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="requestorEmail">Requestor's Email</label>
+                    <input
+                      id="requestorEmail"
+                      [(ngModel)]="request.requestorEmail"
+                      name="requestorEmail"
+                      type="email"
+                      class="form-control"
+                      readonly
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="department">Department</label>
+                    <input
+                      id="department"
+                      [(ngModel)]="request.department"
+                      name="department"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+                </fieldset>
+
+                <!-- Training Details -->
+                <fieldset>
+                  <legend>Training Details</legend>
+
+                  <div class="form-group">
+                    <label for="trainingTitle">Training Title</label>
+                    <input
+                      id="trainingTitle"
+                      [(ngModel)]="request.trainingTitle"
+                      name="trainingTitle"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="trainingDescription"
+                      >Training Description</label
+                    >
+                    <textarea
+                      id="trainingDescription"
+                      [(ngModel)]="request.trainingDescription"
+                      name="trainingDescription"
+                      class="form-control"
+                      rows="4"
+                      required
+                    ></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="numberOfEmployees">Number of Employees</label>
+                    <input
+                      id="numberOfEmployees"
+                      [(ngModel)]="request.numberOfEmployees"
+                      name="numberOfEmployees"
+                      type="number"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="technicalSkillSetRequired"
+                      >Technical Skill Set Required</label
+                    >
+                    <input
+                      id="technicalSkillSetRequired"
+                      [(ngModel)]="request.technicalSkills"
+                      name="technicalSkillSetRequired"
+                      class="form-control"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="durationInDays"
+                      >Duration of Training (in days)</label
+                    >
+                    <input
+                      id="durationInDays"
+                      [(ngModel)]="request.duration"
+                      name="durationInDays"
+                      type="number"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="preferredStartDate">Preferred Start Date</label>
+                    <input
+                      id="preferredStartDate"
+                      [(ngModel)]="request.preferredStartDate"
+                      name="preferredStartDate"
+                      type="date"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="trainingLocation">Training Location</label>
+                    <input
+                      id="trainingLocation"
+                      [(ngModel)]="request.trainingLocation"
+                      name="trainingLocation"
+                      class="form-control"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="specialRequirements"
+                      >Special Requirements</label
+                    >
+                    <textarea
+                      id="specialRequirements"
+                      [(ngModel)]="request.specialRequirements"
+                      name="specialRequirements"
+                      class="form-control"
+                      rows="4"
+                    ></textarea>
+                  </div>
+                </fieldset>
+
+                <button type="submit" class="btn btn-primary m-2">Save</button>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
             </div>
           </div>
         </div>
