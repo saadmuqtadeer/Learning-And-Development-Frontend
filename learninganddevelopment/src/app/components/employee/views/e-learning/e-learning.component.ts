@@ -54,6 +54,7 @@ export class ELearningComponent implements OnInit {
     }
   }
 
+  
   // Method to load more courses
   loadMore(): void {
     if (this.loadingMore) return; // Prevent multiple clicks

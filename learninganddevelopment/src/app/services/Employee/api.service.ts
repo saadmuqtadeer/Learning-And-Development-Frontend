@@ -16,6 +16,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
+  
   getAllCourses(page: number = 1, pageSize: number = 10): Observable<any> {
     const params = new HttpParams()
       .set('page', page.toString())
