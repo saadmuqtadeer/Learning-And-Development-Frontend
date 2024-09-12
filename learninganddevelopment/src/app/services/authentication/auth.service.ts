@@ -66,6 +66,7 @@ export class AuthService {
     localStorage.clear();
     this.payloadData = null;
     this.Id = null;
+    this.Id = null;
     this.router.navigate(['login']);
   }
 
