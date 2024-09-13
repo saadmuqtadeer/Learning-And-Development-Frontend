@@ -29,7 +29,7 @@
                 <a
                   routerLink="/accounts/dashboard"
                 >
-                  <i class="fas fa-home"></i>
+                  <i class="fa fa-home"></i>
                   <p>Dashboard</p>
                 </a>
               </li>
@@ -37,67 +37,27 @@
                 <a
                 href="/accounts/training-request"
               >
-                <i class="fas fa-home"></i>
+                <i class="fa fa-retweet"></i>
                 <p>Training Requests</p>
               </a>
               </li>
               <li class="nav-item">
                 <a (click)="toggleMenu('trainingProgram')">
-                  <i class="fas fa-layer-group"></i>
-                  <p>Training Program</p>
-                  <span class="caret"></span>
+                  <i class="fa fa-table"></i>
+                  <p>TOC</p>
                 </a>
-                <div class="collapse"  id="base"  [ngClass]="{'show': isMenuActive('trainingProgram')}" >
-                  <ul class="nav nav-collapse">
-                    <li>
-                      <a href="components/avatars.html">
-                        <span class="sub-item">View Ongoing Programs</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="components/panels.html">
-                        <span class="sub-item">View & Modify TOC</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="components/notifications.html">
-                        <span class="sub-item">Notifications</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
               </li>
               <li class="nav-item">
                 <a (click)="toggleMenu('trainers')">
-                  <i class="fas fa-layer-group"></i>
+                  <i class="fa fa-users"></i>
                   <p>Trainers</p>
-                  <span class="caret"></span>
                 </a>
-                <div class="collapse" id="base" [ngClass]="{'show': isMenuActive('trainers')}">
-                  <ul class="nav nav-collapse">
-                    <li>
-                      <a href="components/avatars.html">
-                        <span class="sub-item">All Trainers</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="components/buttons.html">
-                        <span class="sub-item">Interviews</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="components/gridsystem.html">
-                        <span class="sub-item">Interview Status</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
               </li>
               <li class="nav-item">
                 <a
                 href="/accounts/feedback"
               >
-                <i class="fas fa-home"></i>
+                <i class="fa fa-comment-o"></i>
                 <p>Feedback</p>
               </a>
               </li>
@@ -113,7 +73,7 @@
               <div class="logo-header" data-background-color="dark">
                 <a href="index.html" class="logo">
                   <img
-                    src="/assets/img/kaiadmin/logo_light.svg"
+                    src=""
                     alt="navbar brand"
                     class="navbar-brand"
                     height="20"
@@ -226,17 +186,13 @@
                       href="#"
                       aria-expanded="false"
                     >
-                      <div class="avatar-sm">
+                      <div class="avatar-sm me-5">
                         <img
-                          src="assets/img/profile.jpg"
-                          alt="..."
+                          src="https://cdn-icons-png.freepik.com/256/15810/15810033.png?ga=GA1.1.1716083513.1723108516&semt=ais_hybrid"
+                          alt=""
                           class="avatar-img rounded-circle"
                         />
                       </div>
-                      <span class="profile-username">
-                        <span class="op-7">Hi,</span>
-                        <span class="fw-bold">Hizrian</span>
-                      </span>
                     </a>
                     <ul class="dropdown-menu dropdown-user animated fadeIn">
                       <div class="dropdown-user-scroll scrollbar-outer">
