@@ -24,6 +24,7 @@ import { EmployeeFeedbackComponent } from './components/employee/views/employee-
 import { AllusersComponent } from './components/admin/views/allusers/allusers.component';
 import { UserDetailComponent } from './components/admin/views/allusers/user-detail/user-detail.component';
 import { UserEditComponent } from './components/admin/views/allusers/user-edit/user-edit.component';
+import { AccountsFeedbackComponent } from './components/accounts/views/accounts-feedback/accounts-feedback.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -52,6 +53,7 @@ const routes: Routes = [
     children: [
       { path: 'dashboard', component: AccountsDashboardComponent },
       { path: 'training-request', component: TrainingRequestComponent },
+      { path:'feedback',component:AccountsFeedbackComponent},
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   },
