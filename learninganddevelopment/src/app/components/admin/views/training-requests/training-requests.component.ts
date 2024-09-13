@@ -99,7 +99,7 @@ export class TrainingRequestsComponent implements OnInit {
 
   acceptRequest(request: any) {
     if (confirm('Are you sure you want to accept this request?')) {
-      const requestUpdate = { status: 1, adminFeedback:"Accepted" }; // Accepted status
+      const requestUpdate = { status: "Accepted", adminFeedback:"Accepted" }; // Accepted status
       this.updateRequestStatus(requestUpdate, request.id);
     }
   }
@@ -108,14 +108,14 @@ export class TrainingRequestsComponent implements OnInit {
   rejectRequest(request: any) {
     const reason = prompt('Please provide a reason for rejection:');
     if (reason && confirm('Are you sure you want to reject this request?')) {
-      const requestUpdate = { status: 2, adminFeedback: reason }; // Rejected status with reason
+      const requestUpdate = { status: "Rejected", adminFeedback: reason }; // Rejected status with reason
       this.updateRequestStatus(requestUpdate, request.id);
     } else {
       console.log('Rejection canceled or no reason provided');
     }
   }
 
-  updateRequestStatus(requestUpdate: {status: number, adminFeedback?: string}, id: number) {
+  updateRequestStatus(requestUpdate: {status: string, adminFeedback?: string}, id: number) {
     this.trainingRequestService.updateRequestStatus(requestUpdate, id).subscribe({
       next: (updatedRequest) => {
         console.log('Request updated successfully:', updatedRequest);

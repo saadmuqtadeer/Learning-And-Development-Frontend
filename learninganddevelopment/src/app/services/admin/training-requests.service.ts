@@ -17,7 +17,7 @@ export class TrainingRequestsService {
     return this.http.get<any>(`${this.apiUrl}training-requests`);
   }
 
-  public updateRequestStatus(requestUpdate: {status: number, adminFeedback?: string}, id: number): Observable<any> {
+  public updateRequestStatus(requestUpdate: {status: string, adminFeedback?: string}, id: number): Observable<any> {
     console.log('Updating request status:', requestUpdate);
     return this.http.put<any>(`${this.apiUrl}update-status/${id}`, requestUpdate);
   }
