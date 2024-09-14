@@ -1,0 +1,194 @@
+<div class="card">
+    <div class="card-header">
+      <h4 class="card-title">Feedback</h4>
+    </div>
+    <div class="card-body">
+        <img src="https://img.freepik.com/free-vector/customer-feedback-management-flat-vector-illustration-cartoon-happy-tiny-people-voting-giving-review-company-service-crm-advices-assessment-concept_74855-9834.jpg?t=st=1725803885~exp=1725807485~hmac=192ebdf0aadfa9d56308eacd4fd71c80c6a5d2d2fd7655383994913e0657d883&w=1380" class="feedback-img"alt="">
+        <h5 class="text-center m-2">
+        Your feedback is invaluable to us. Please help us enhance our overall training experience by sharing your insights and suggestions.
+      </h5>
+  
+      <div class="d-flex flex-row gap-5 justify-content-center m-4">
+        <!-- Button trigger modal for Trainer Feedback -->
+        <button type="button" class="btn btn-primary btn-lg" (click)="openModal('trainerModal')">
+          Employees Batch Feedback
+        </button>
+  
+        <!-- Trainer Feedback Modal -->
+        <div class="modal fade" id="trainerModal" tabindex="-1" aria-labelledby="trainerModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="trainerModalLabel">Feedback request</h5>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <!-- Modal content here -->
+                <div class="">
+                    <i class="far fa-file-alt fa-4x mb-3 text-primary"></i>
+                    <p>
+                      <strong>Your opinion matters</strong>
+                    </p>
+                    <p>
+                      Have some ideas how to improve our training?
+                      <strong>Give us your feedback.</strong>
+                    </p>
+                  </div>
+          
+                  <hr />
+          
+                  <form class="px-4" action="">
+                    <div class="question">
+                        <p class=""><strong>Do the new employees demonstrate adequate knowledge of accounting principles and procedures?</strong></p>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="exampleForm" id="radio4Example1" />
+                            <label class="form-check-label" for="radio4Example1">
+                              Very good
+                            </label>
+                          </div>
+                          <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="exampleForm" id="radio4Example2" />
+                            <label class="form-check-label" for="radio4Example2">
+                              Good
+                            </label>
+                          </div>
+                          <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="exampleForm" id="radio4Example3" />
+                            <label class="form-check-label" for="radio4Example3">
+                              Medicore
+                            </label>
+                          </div>
+                          <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="exampleForm" id="radio4Example4" />
+                            <label class="form-check-label" for="radio4Example4">
+                              Bad
+                            </label>
+                          </div>
+                          <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="exampleForm" id="radio4Example5" />
+                            <label class="form-check-label" for="radio4Example5">
+                              Very bad
+                            </label>
+                          </div>
+                    </div>
+                    <div class="question">
+                        <p class=""><strong>How well do the new employees adapt to the work environment and team dynamics?</strong></p>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="exampleForm" id="radio4Example1" />
+                            <label class="form-check-label" for="radio4Example1">
+                              Very good
+                            </label>
+                          </div>
+                          <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="exampleForm" id="radio4Example2" />
+                            <label class="form-check-label" for="radio4Example2">
+                              Good
+                            </label>
+                          </div>
+                          <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="exampleForm" id="radio4Example3" />
+                            <label class="form-check-label" for="radio4Example3">
+                              Medicore
+                            </label>
+                          </div>
+                          <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="exampleForm" id="radio4Example4" />
+                            <label class="form-check-label" for="radio4Example4">
+                              Bad
+                            </label>
+                          </div>
+                          <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="exampleForm" id="radio4Example5" />
+                            <label class="form-check-label" for="radio4Example5">
+                              Very bad
+                            </label>
+                          </div>
+                    </div>
+                    <div class="question">
+                        <p class=""><strong>Are they able to complete tasks efficiently and accurately?</strong></p>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="exampleForm" id="radio4Example1" />
+                            <label class="form-check-label" for="radio4Example1">
+                              Very good
+                            </label>
+                          </div>
+                          <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="exampleForm" id="radio4Example2" />
+                            <label class="form-check-label" for="radio4Example2">
+                              Good
+                            </label>
+                          </div>
+                          <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="exampleForm" id="radio4Example3" />
+                            <label class="form-check-label" for="radio4Example3">
+                              Medicore
+                            </label>
+                          </div>
+                          <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="exampleForm" id="radio4Example4" />
+                            <label class="form-check-label" for="radio4Example4">
+                              Bad
+                            </label>
+                          </div>
+                          <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="exampleForm" id="radio4Example5" />
+                            <label class="form-check-label" for="radio4Example5">
+                              Very bad
+                            </label>
+                          </div>
+                    </div>
+                    <div class="question">
+                        <p class=""><strong>How would you rate the overall work performance of the newly trained employees in your team?</strong></p>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="exampleForm" id="radio4Example1" />
+                            <label class="form-check-label" for="radio4Example1">
+                              Very good
+                            </label>
+                          </div>
+                          <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="exampleForm" id="radio4Example2" />
+                            <label class="form-check-label" for="radio4Example2">
+                              Good
+                            </label>
+                          </div>
+                          <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="exampleForm" id="radio4Example3" />
+                            <label class="form-check-label" for="radio4Example3">
+                              Medicore
+                            </label>
+                          </div>
+                          <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="exampleForm" id="radio4Example4" />
+                            <label class="form-check-label" for="radio4Example4">
+                              Bad
+                            </label>
+                          </div>
+                          <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="exampleForm" id="radio4Example5" />
+                            <label class="form-check-label" for="radio4Example5">
+                              Very bad
+                            </label>
+                          </div>
+                    </div>
+                    <div class="question">
+                        <p class=""><strong>Are there any specific areas where you feel they need additional training?</strong></p>
+              
+                        <!-- Message input -->
+                        <div data-mdb-input-init class="form-outline mb-4">
+                          <textarea class="form-control" id="form4Example4" rows="4"></textarea>
+                          <label class="form-label" for="form4Example4">Your feedback</label>
+                        </div>
+                    </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

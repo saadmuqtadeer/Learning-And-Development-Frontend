@@ -26,104 +26,39 @@
         <ul class="nav nav-secondary">
           <li class="nav-item active" routerLinkActive="active">
             <a routerLink="/admin/dashboard">
-              <i class="fas fa-home"></i>
+              <i class="fa fa-home"></i>
               <p>Dashboard</p>
             </a>
           </li>
           <li class="nav-item">
             <a routerLink="/admin/training-requests">
-              <i class="fas fa-home"></i>
+              <i class="fa fa-retweet"></i>
               <p>Training Requests</p>
             </a>
           </li>
           <li class="nav-item active" routerLinkActive="active">
             <a routerLink="/admin/all-users">
-              <i class="fas fa-home"></i>
+              <i class="fa fa-user-o"></i>
               <p>View All Users</p>
             </a>
           </li>
           <li class="nav-item">
-            <a (click)="toggleMenu('trainingProgram')">
-              <i class="fas fa-layer-group"></i>
-              <p>Training Program</p>
-              <span class="caret"></span>
+            <a routerLink="/admin/toc" (click)="toggleMenu('trainingProgram')">
+              <i class="fa fa-table"></i>
+              <p>TOC</p>
             </a>
-            <div class="collapse" id="base" [ngClass]="{'show': isMenuActive('trainingProgram')}">
-              <ul class="nav nav-collapse">
-                <li>
-                  <a href="components/avatars.html">
-                    <span class="sub-item">View Programs</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="components/buttons.html">
-                    <span class="sub-item">Create Program</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="components/gridsystem.html">
-                    <span class="sub-item">Update Program</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="components/panels.html">
-                    <span class="sub-item">Send TOC</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="components/notifications.html">
-                    <span class="sub-item">Notifications</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
           </li>
           <li class="nav-item">
             <a (click)="toggleMenu('trainers')">
-              <i class="fas fa-layer-group"></i>
+              <i class="fa fa-users"></i>
               <p>Trainers</p>
-              <span class="caret"></span>
             </a>
-            <div class="collapse" id="base" [ngClass]="{'show': isMenuActive('trainers')}">
-              <ul class="nav nav-collapse">
-                <li>
-                  <a href="components/avatars.html">
-                    <span class="sub-item">All Trainers</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="components/buttons.html">
-                    <span class="sub-item">Interviews</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="components/gridsystem.html">
-                    <span class="sub-item">Interview Status</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
           </li>
           <li class="nav-item">
             <a (click)="toggleMenu('feedbacks')">
-              <i class="fas fa-layer-group"></i>
+              <i class="fa fa-comment-o"></i>
               <p>Feedbacks</p>
-              <span class="caret"></span>
             </a>
-            <div class="collapse" id="base" [ngClass]="{'show': isMenuActive('feedbacks')}">
-              <ul class="nav nav-collapse">
-                <li>
-                  <a href="components/avatars.html">
-                    <span class="sub-item">Employees</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="components/buttons.html">
-                    <span class="sub-item">Accounts</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
           </li>
         </ul>
       </div>
@@ -158,11 +93,12 @@
 
           <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
             <li class="nav-item topbar-icon dropdown hidden-caret">
-              <a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button" data-bs-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button" 
+              data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-bell"></i>
                 <span class="notification">4</span>
-              </a>
+            </a>
+            
               <ul class="dropdown-menu notif-box animated fadeIn" aria-labelledby="notifDropdown">
                 <li>
                   <div class="dropdown-title">
@@ -224,13 +160,10 @@
 
             <li class="nav-item topbar-user dropdown hidden-caret">
               <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#" aria-expanded="false">
-                <div class="avatar-sm">
-                  <img src="assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle" />
+                <div class="avatar-sm me-5">
+                  <img src="https://cdn-icons-png.freepik.com/256/15810/15810033.png?ga=GA1.1.1716083513.1723108516&semt=ais_hybrid" alt="..." 
+                  class="avatar-img rounded-circle" />
                 </div>
-                <span class="profile-username">
-                  <span class="op-7">Hi,</span>
-                  <span class="fw-bold">Hizrian</span>
-                </span>
               </a>
               <ul class="dropdown-menu dropdown-user animated fadeIn">
                 <div class="dropdown-user-scroll scrollbar-outer">

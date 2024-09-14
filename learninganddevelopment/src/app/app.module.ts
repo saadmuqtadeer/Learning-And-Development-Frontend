@@ -25,6 +25,8 @@ import { CommonModule } from '@angular/common';
 import { AllusersComponent } from './components/admin/views/allusers/allusers.component';
 import { UserEditComponent } from './components/admin/views/allusers/user-edit/user-edit.component';
 import { UserDetailComponent } from './components/admin/views/allusers/user-detail/user-detail.component';
+import { AccountsFeedbackComponent } from './components/accounts/views/accounts-feedback/accounts-feedback.component';
+import { TocComponent } from './components/admin/views/toc/toc/toc.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { UserDetailComponent } from './components/admin/views/allusers/user-deta
     PagenotfoundComponent,
     AllusersComponent,
     UserEditComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    AccountsFeedbackComponent,
+    TocComponent
   ],
   imports: [
     BrowserModule,

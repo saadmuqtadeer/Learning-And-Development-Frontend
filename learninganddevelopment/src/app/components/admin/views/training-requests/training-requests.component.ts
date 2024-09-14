@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Modal } from 'bootstrap';
 import { TrainingRequestsService } from '../../../../services/admin/training-requests.service';
 import { AuthService } from '../../../../services/authentication/auth.service';
@@ -25,7 +26,8 @@ export class TrainingRequestsComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private trainingRequestService: TrainingRequestsService,
-    private signalRService: SignalRService
+    private signalRService: SignalRService,
+    private router: Router
   ) {}
   
   private initializeSignalRConnection() {
@@ -110,7 +112,7 @@ export class TrainingRequestsComponent implements OnInit {
 
   acceptRequest(request: any) {
     if (confirm('Are you sure you want to accept this request?')) {
-      const requestUpdate = { status: 1, adminFeedback:"Accepted" }; // Accepted status
+      const requestUpdate = { status: "Accepted", adminFeedback:"Accepted" }; // Accepted status
       this.updateRequestStatus(requestUpdate, request.id);
     }
   }
@@ -119,14 +121,14 @@ export class TrainingRequestsComponent implements OnInit {
   rejectRequest(request: any) {
     const reason = prompt('Please provide a reason for rejection:');
     if (reason && confirm('Are you sure you want to reject this request?')) {
-      const requestUpdate = { status: 2, adminFeedback: reason }; // Rejected status with reason
+      const requestUpdate = { status: "Rejected", adminFeedback: reason }; // Rejected status with reason
       this.updateRequestStatus(requestUpdate, request.id);
     } else {
       console.log('Rejection canceled or no reason provided');
     }
   }
 
-  updateRequestStatus(requestUpdate: {status: number, adminFeedback?: string}, id: number) {
+  updateRequestStatus(requestUpdate: {status: string, adminFeedback?: string}, id: number) {
     this.trainingRequestService.updateRequestStatus(requestUpdate, id).subscribe({
       next: (updatedRequest) => {
         console.log('Request updated successfully:', updatedRequest);
@@ -150,6 +152,12 @@ export class TrainingRequestsComponent implements OnInit {
   setActiveTab(tab: string) {
     this.activeTab = tab;
     this.updateRequestsByTab(); // Update the requests based on the active tab
+  }
+
+  generateToc(request: any) {
+    console.log('Generate TOC for:', request);
+
+    this.router.navigate(['/admin/toc'], { queryParams: { requestId: request.id } });
   }
 }
 

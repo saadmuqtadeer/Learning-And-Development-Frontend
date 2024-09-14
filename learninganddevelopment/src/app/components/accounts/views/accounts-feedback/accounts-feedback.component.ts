@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { Modal } from 'bootstrap';
 
 @Component({
-  selector: 'app-employee-feedback',
-  templateUrl: './employee-feedback.component.html',
-  styleUrl: './employee-feedback.component.css'
+  selector: 'app-accounts-feedback',
+  templateUrl: './accounts-feedback.component.html',
+  styleUrl: './accounts-feedback.component.css'
 })
-export class EmployeeFeedbackComponent {
+export class AccountsFeedbackComponent {
   openModal(id:string) {
     const modalElement = document.getElementById(id);
     if (modalElement) {
@@ -14,5 +14,5 @@ export class EmployeeFeedbackComponent {
       modal.show();
     }
   }
-
 }
+

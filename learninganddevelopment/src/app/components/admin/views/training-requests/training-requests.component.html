@@ -1,138 +1,93 @@
 <div class="card">
-    <div class="card-header">
-      <h4 class="card-title">Training Request</h4>
-    </div>
-    <div class="card-body">
-      <ul
-        class="nav nav-tabs nav-line nav-color-secondary"
-        id="line-tab"
-        role="tablist"
-      >
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            [ngClass]="{ active: activeTab === 'all' }"
-            (click)="setActiveTab('all')"
-            >All Requests</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            [ngClass]="{ active: activeTab === 'pending' }"
-            (click)="setActiveTab('pending')"
-            >Pending Requests</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            [ngClass]="{ active: activeTab === 'accepted' }"
-            (click)="setActiveTab('accepted')"
-            >Accepted Requests</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            [ngClass]="{ active: activeTab === 'rejected' }"
-            (click)="setActiveTab('rejected')"
-            >Rejected Requests</a
-          >
-        </li>
-      </ul>
-  
-      <!-- Tab Content -->
-      <div class="tab-content mt-3 mb-3" id="line-tabContent">
-        <!-- All Requests Tab -->
-        <div
-          class="tab-pane"
-          [ngClass]="{ active: activeTab === 'all', fade: activeTab !== 'all' }"
-          *ngIf="activeTab === 'all'"
-        >
-          <div class="allRequests">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <div class="d-flex align-items-center">
-                    <h4 class="card-title">All Requests</h4>
-                  </div>
+  <div class="card-header">
+    <h4 class="card-title">Training Request</h4>
+  </div>
+  <div class="card-body">
+    <ul class="nav nav-tabs nav-line nav-color-secondary" id="line-tab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link" [ngClass]="{ active: activeTab === 'all' }" (click)="setActiveTab('all')">All Requests</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [ngClass]="{ active: activeTab === 'pending' }" (click)="setActiveTab('pending')">Pending
+          Requests</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [ngClass]="{ active: activeTab === 'accepted' }" (click)="setActiveTab('accepted')">Accepted
+          Requests</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [ngClass]="{ active: activeTab === 'rejected' }" (click)="setActiveTab('rejected')">Rejected
+          Requests</a>
+      </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content mt-3 mb-3" id="line-tabContent">
+      <!-- All Requests Tab -->
+      <div class="tab-pane" [ngClass]="{ active: activeTab === 'all', fade: activeTab !== 'all' }"
+        *ngIf="activeTab === 'all'">
+        <div class="allRequests">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <div class="d-flex align-items-center">
+                  <h4 class="card-title">All Requests</h4>
                 </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <div
-                      id="add-row_wrapper"
-                      class="dataTables_wrapper container-fluid dt-bootstrap4"
-                    >
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <table
-                            id="training-request"
-                            class="display table table-striped table-hover dataTable"
-                            role="grid"
-                            aria-describedby="training-request_info"
-                          >
-                            <thead>
-                              <tr role="row">
-                                <th style="width: 50px">#</th>
-                                <th style="width: 200px">Name</th>
-                                <th style="width: 200px">Department</th>
-                                <th style="width: 200px">Title</th>
-                                <th style="width: 150px">Status</th>
-                                <th style="width: 150px">View</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr
-                                *ngFor="
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <div id="add-row_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <table id="training-request" class="display table table-striped table-hover dataTable"
+                          role="grid" aria-describedby="training-request_info">
+                          <thead>
+                            <tr role="row">
+                              <th style="width: 50px">#</th>
+                              <th style="width: 200px">Name</th>
+                              <th style="width: 200px">Department</th>
+                              <th style="width: 200px">Title</th>
+                              <th style="width: 150px">Status</th>
+                              <th style="width: 150px">View</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="
                                   let request of trainingRequests;
                                   let i = index
-                                "
-                                role="row"
-                                [class.odd]="i % 2 !== 0"
-                                [class.even]="i % 2 === 0"
-                              >
-                                <td>{{ i + 1 }}</td>
-                                <td>{{ request.requestorName }}</td>
-                                <td>{{ request.department }}</td>
-                                <td>{{ request.trainingTitle }}</td>
-                                <td>
-                                  <button
-                                    class="btn"
-                                    [ngClass]="{
+                                " role="row" [class.odd]="i % 2 !== 0" [class.even]="i % 2 === 0">
+                              <td>{{ i + 1 }}</td>
+                              <td>{{ request.requestorName }}</td>
+                              <td>{{ request.department }}</td>
+                              <td>{{ request.trainingTitle }}</td>
+                              <td>
+                                <button class="btn" [ngClass]="{
                                       'btn-warning': request.status === 0,
                                       'btn-success': request.status === 1,
                                       'btn-danger': request.status === 2
-                                    }"
-                                  >
-                                    <!-- Display status text based on request status -->
-                                    <ng-container [ngSwitch]="request.status">
-                                      <span *ngSwitchCase="0">Pending</span>
-                                      <span *ngSwitchCase="1">Accepted</span>
-                                      <span *ngSwitchCase="2">Rejected</span>
-                                      <span *ngSwitchDefault>Unknown</span>
-                                    </ng-container>
+                                    }">
+                                  <!-- Display status text based on request status -->
+                                  <ng-container [ngSwitch]="request.status">
+                                    <span *ngSwitchCase="0">Pending</span>
+                                    <span *ngSwitchCase="1">Accepted</span>
+                                    <span *ngSwitchCase="2">Rejected</span>
+                                    <span *ngSwitchDefault>Unknown</span>
+                                  </ng-container>
+                                </button>
+                              </td>
+
+
+                              <td>
+                                <div class="form-button-action">
+                                  <button type="button" data-bs-toggle="tooltip" title="View Task"
+                                    class="btn btn-link btn-primary btn-lg" (click)="viewRequestDetails(request)">
+                                    <i class="fa fa-eye"></i>
                                   </button>
-                                </td>
-                                
-                                
-                                <td>
-                                  <div class="form-button-action">
-                                    <button
-                                      type="button"
-                                      data-bs-toggle="tooltip"
-                                      title="View Task"
-                                      class="btn btn-link btn-primary btn-lg"
-                                      (click)="viewRequestDetails(request)"
-                                    >
-                                      <i class="fa fa-eye"></i>
-                                    </button>
-                                  </div>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </div>
                   </div>
@@ -141,26 +96,79 @@
             </div>
           </div>
         </div>
-  
-        <!-- Pending Requests Tab -->
-        <div
-          class="tab-pane"
-          [ngClass]="{
+      </div>
+
+      <!-- Pending Requests Tab -->
+      <div class="tab-pane" [ngClass]="{
             active: activeTab === 'pending',
             fade: activeTab !== 'pending'
-          }"
-          *ngIf="activeTab === 'pending'"
-        >
+          }" *ngIf="activeTab === 'pending'">
+        <div class="card">
+          <div class="card-header">
+            <h4><strong>Pending Requests</strong></h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="display table table-striped table-hover" role="grid">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Title</th>
+                    <th>View</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let request of pendingRequests; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ request.requestorName }}</td>
+                    <td>{{ request.department }}</td>
+                    <td>{{ request.trainingTitle }}</td>
+                    <td>
+                      <div class="form-button-action">
+                        <!-- View Icon -->
+                        <button type="button" class="btn btn-link btn-primary btn-lg"
+                          (click)="viewRequestDetails(request)">
+                          <i class="fa fa-eye"></i>
+                        </button>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="form-button-action">
+                        <!-- check Icon -->
+                        <button type="button" class="btn btn-link btn-success btn-lg" (click)="acceptRequest(request)">
+                          <i class="fa fa-check"></i>
+                        </button>
+                        <!-- reject Icon -->
+                        <button type="button" class="btn btn-link btn-danger btn-lg" (click)="rejectRequest(request)">
+                          <i class="fa fa-times"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Accepted Requests Tab -->
+      <div class="tab-pane" [ngClass]="{
+  active: activeTab === 'accepted',
+  fade: activeTab !== 'accepted'
+}" *ngIf="activeTab === 'accepted'">
+        <div class="">
           <div class="card">
             <div class="card-header">
-              <h4><strong>Pending Requests</strong></h4>
+              <h4><strong>Accepted Requests</strong></h4>
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table
-                  class="display table table-striped table-hover"
-                  role="grid"
-                >
+                <table class="display table table-striped table-hover" role="grid">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -168,44 +176,29 @@
                       <th>Department</th>
                       <th>Title</th>
                       <th>View</th>
-                      <th>Action</th>
+                      <th>TOC</th> <!-- New column for TOC button -->
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let request of pendingRequests; let i = index">
+                    <!-- Use *ngFor to dynamically populate rows -->
+                    <tr *ngFor="let request of approvedRequests; let i = index">
                       <td>{{ i + 1 }}</td>
                       <td>{{ request.requestorName }}</td>
                       <td>{{ request.department }}</td>
                       <td>{{ request.trainingTitle }}</td>
                       <td>
                         <div class="form-button-action">
-                          <!-- View Icon -->
-                          <button
-                            type="button"
-                            class="btn btn-link btn-primary btn-lg"
-                            (click)="viewRequestDetails(request)"
-                          >
+                          <button type="button" data-bs-toggle="tooltip" title="View Task"
+                            class="btn btn-link btn-primary btn-lg" (click)="viewRequestDetails(request)">
                             <i class="fa fa-eye"></i>
                           </button>
                         </div>
                       </td>
                       <td>
                         <div class="form-button-action">
-                          <!-- check Icon -->
-                          <button
-                            type="button"
-                            class="btn btn-link btn-success btn-lg"
-                            (click)="acceptRequest(request)"
-                          >
-                            <i class="fa fa-check"></i>
-                          </button>
-                          <!-- reject Icon -->
-                          <button
-                            type="button"
-                            class="btn btn-link btn-danger btn-lg"
-                            (click)="rejectRequest(request)"
-                          >
-                          <i class="fa fa-times"></i>
+                          <button type="button" data-bs-toggle="tooltip" title="Generate TOC"
+                            class="btn btn-link btn-info btn-lg" (click)="generateToc(request)"> Generate TOC
+                            <i class="fa fa-file-alt"></i>
                           </button>
                         </div>
                       </td>
@@ -216,223 +209,139 @@
             </div>
           </div>
         </div>
-  
-  
-        <!-- Accepted Requests Tab -->
-        <div
-          class="tab-pane"
-          [ngClass]="{
-            active: activeTab === 'accepted',
-            fade: activeTab !== 'accepted'
-          }"
-          *ngIf="activeTab === 'accepted'"
-        >
-          <div class="">
-            <div class="card">
-              <div class="card-header">
-                <h4><strong>Accepted Requests</strong></h4>
-              </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table
-                    class="display table table-striped table-hover"
-                    role="grid"
-                  >
-                    <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Department</th>
-                        <th>Title</th>
-                        <th>View</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <!-- Use *ngFor to dynamically populate rows -->
-                      <tr *ngFor="let request of approvedRequests; let i = index">
-                        <td>{{ i + 1 }}</td>
-                        <td>{{ request.requestorName }}</td>
-                        <td>{{ request.department }}</td>
-                        <td>{{ request.trainingTitle }}</td>
-                        <td>
-                          <div class="form-button-action">
-                            <button
-                              type="button"
-                              data-bs-toggle="tooltip"
-                              title="View Task"
-                              class="btn btn-link btn-primary btn-lg"
-                              (click)="viewRequestDetails(request)"
-                            >
-                              <i class="fa fa-eye"></i>
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-  
-        <!-- Rejected Requests Tab -->
-        <div
-          class="tab-pane"
-          [ngClass]="{
+      </div>
+
+
+      <!-- Rejected Requests Tab -->
+      <div class="tab-pane" [ngClass]="{
             active: activeTab === 'rejected',
             fade: activeTab !== 'rejected'
-          }"
-          *ngIf="activeTab === 'rejected'"
-        >
-          <div class="">
-            <div class="card">
-              <div class="card-header">
-                <h4><strong>Rejected Requests</strong></h4>
-              </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table
-                    class="display table table-striped table-hover"
-                    role="grid"
-                  >
-                    <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Department</th>
-                        <th>Title</th>
-                        <th>View</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <!-- Use *ngFor to dynamically populate rows -->
-                       <tr *ngFor="let request of rejectedRequests; let i = index">
-                        <td>{{ i + 1 }}</td>
-                        <td>{{ request.requestorName }}</td>
-                        <td>{{ request.department }}</td>
-                        <td>{{ request.trainingTitle }}</td>
-                        <td>
-                          <div class="form-button-action">
-                            <button
-                              type="button"
-                              data-bs-toggle="tooltip"
-                              title="View Task"
-                              class="btn btn-link btn-primary btn-lg"
-                              (click)="viewRequestDetails(request)"
-                            >
-                              <i class="fa fa-eye"></i>
-                            </button>
-                          </div>
-                        </td>
-                      </tr> 
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+          }" *ngIf="activeTab === 'rejected'">
+        <div class="">
+          <div class="card">
+            <div class="card-header">
+              <h4><strong>Rejected Requests</strong></h4>
             </div>
-          </div>
-        </div>
-  
-        <!-- view request modal -->
-        <div
-          class="modal fade"
-          id="viewRequestModal"
-          tabindex="-1"
-          role="dialog"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Request Details</h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body">
-                <table class="table table-hover table-striped">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="display table table-striped table-hover" role="grid">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Name</th>
+                      <th>Department</th>
+                      <th>Title</th>
+                      <th>View</th>
+                    </tr>
+                  </thead>
                   <tbody>
-                    <tr>
-                      <th scope="row" class="col-4">Requestor's Name</th>
-                      <td class="col-8">{{ selectedRequest?.requestorName }}</td>
-                    </tr>
-                    <tr>
-                      <th scope="row" class="col-4">Requestor's Email</th>
-                      <td class="col-8">{{ selectedRequest?.requestorEmail }}</td>
-                    </tr>
-                    <tr>
-                      <th scope="row" class="col-4">Department</th>
-                      <td class="col-8">{{ selectedRequest?.department }}</td>
-                    </tr>
-                    <tr>
-                      <th scope="row" class="col-4">Training Title</th>
-                      <td class="col-8">{{ selectedRequest?.trainingTitle }}</td>
-                    </tr>
-                    <tr>
-                      <th scope="row" class="col-4">Training Description</th>
-                      <td class="col-8">
-                        {{ selectedRequest?.trainingDescription }}
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row" class="col-4">Number of Employees</th>
-                      <td class="col-8">
-                        {{ selectedRequest?.numberOfEmployees }}
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row" class="col-4">Technical Skills Required</th>
-                      <td class="col-8">
-                        {{ selectedRequest?.technicalSkills }}
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row" class="col-4">
-                        Duration of Training (in days)
-                      </th>
-                      <td class="col-8">{{ selectedRequest?.duration }}</td>
-                    </tr>
-                    <tr>
-                      <th scope="row" class="col-4">Preferred Start Date</th>
-                      <td class="col-8">
-                        {{ selectedRequest?.preferredStartDate }}
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row" class="col-4">Training Location</th>
-                      <td class="col-8">
-                        {{ selectedRequest?.trainingLocation }}
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row" class="col-4">Special Requirements</th>
-                      <td class="col-8">
-                        {{ selectedRequest?.specialRequirements }}
+                    <!-- Use *ngFor to dynamically populate rows -->
+                    <tr *ngFor="let request of rejectedRequests; let i = index">
+                      <td>{{ i + 1 }}</td>
+                      <td>{{ request.requestorName }}</td>
+                      <td>{{ request.department }}</td>
+                      <td>{{ request.trainingTitle }}</td>
+                      <td>
+                        <div class="form-button-action">
+                          <button type="button" data-bs-toggle="tooltip" title="View Task"
+                            class="btn btn-link btn-primary btn-lg" (click)="viewRequestDetails(request)">
+                            <i class="fa fa-eye"></i>
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-outline-primary"
-                  data-bs-dismiss="modal"
-                >
-                  Close
-                </button>
-              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- view request modal -->
+      <div class="modal fade" id="viewRequestModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Request Details</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table table-hover table-striped">
+                <tbody>
+                  <tr>
+                    <th scope="row" class="col-4">Requestor's Name</th>
+                    <td class="col-8">{{ selectedRequest?.requestorName }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-4">Requestor's Email</th>
+                    <td class="col-8">{{ selectedRequest?.requestorEmail }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-4">Department</th>
+                    <td class="col-8">{{ selectedRequest?.department }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-4">Training Title</th>
+                    <td class="col-8">{{ selectedRequest?.trainingTitle }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-4">Training Description</th>
+                    <td class="col-8">
+                      {{ selectedRequest?.trainingDescription }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-4">Number of Employees</th>
+                    <td class="col-8">
+                      {{ selectedRequest?.numberOfEmployees }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-4">Technical Skills Required</th>
+                    <td class="col-8">
+                      {{ selectedRequest?.technicalSkills }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-4">
+                      Duration of Training (in days)
+                    </th>
+                    <td class="col-8">{{ selectedRequest?.duration }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-4">Preferred Start Date</th>
+                    <td class="col-8">
+                      {{ selectedRequest?.preferredStartDate }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-4">Training Location</th>
+                    <td class="col-8">
+                      {{ selectedRequest?.trainingLocation }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-4">Special Requirements</th>
+                    <td class="col-8">
+                      {{ selectedRequest?.specialRequirements }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">
+                Close
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- <div>
+</div>
+<!-- <div>
     <h1>SignalR Messages</h1>
     <ul *ngIf="messages.length > 0">
       <li *ngFor="let message of messages">{{ message }}</li>

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { DashboardComponent } from './components/admin/views/dashboard/dashboard.component';
 import { LayoutComponent } from './components/admin/layout/layout.component';
 import { TrainingRequestsComponent } from './components/admin/views/training-requests/training-requests.component';
@@ -24,6 +23,8 @@ import { EmployeeFeedbackComponent } from './components/employee/views/employee-
 import { AllusersComponent } from './components/admin/views/allusers/allusers.component';
 import { UserDetailComponent } from './components/admin/views/allusers/user-detail/user-detail.component';
 import { UserEditComponent } from './components/admin/views/allusers/user-edit/user-edit.component';
+import { AccountsFeedbackComponent } from './components/accounts/views/accounts-feedback/accounts-feedback.component';
+import { TocComponent } from './components/admin/views/toc/toc/toc.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -35,35 +36,38 @@ const routes: Routes = [
   {
     path: 'admin',
     component: LayoutComponent,
-   // canActivate: [AuthGuard, AdminGuard],
+    // canActivate: [AuthGuard, AdminGuard],
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'training-requests', component: TrainingRequestsComponent },
       { path: 'all-users', component: AllusersComponent },
       { path: 'all-users/user-detail/:id', component: UserDetailComponent },
       { path: 'all-users/user-edit/:id', component: UserEditComponent },
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' } // Redirect to dashboard by default
+      { path: 'toc', component: TocComponent},
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   },
   {
     path: 'accounts',
     component: AccountsLayoutComponent,
-    canActivate: [AuthGuard, AccountsGuard],
+    // canActivate: [AuthGuard, AccountsGuard],
     children: [
       { path: 'dashboard', component: AccountsDashboardComponent },
       { path: 'training-request', component: TrainingRequestComponent },
+      { path: 'feedback', component: AccountsFeedbackComponent },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   },
   {
     path: 'employee',
     component: EmployeeLayoutComponent,
-    canActivate: [AuthGuard, EmployeeGuard],
+    // canActivate: [AuthGuard, EmployeeGuard],
     children: [
       { path: 'dashboard', component: EmployeeDashboardComponent },
       { path: 'e-learning', component: ELearningComponent },
       { path: 'live-sessions', component: LiveSessionsComponent },
-      { path: 'feedback', component: EmployeeFeedbackComponent }
+      { path: 'feedback', component: EmployeeFeedbackComponent },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   },
 
