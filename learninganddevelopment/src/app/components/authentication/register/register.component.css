@@ -1,57 +1,122 @@
+/* Global Styling */
 body {
-    background-color: #f8f9fa;
-}
-
-.signup-container {
-    max-width: 1000px;
-    margin: 50px auto;
-    background-color: #fff;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
+    background-color: #e6f7ff;
+    /* Light cyan background for the entire page */
     display: flex;
-    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
 }
 
+/* Container */
+.signup-container {
+    max-width: 850px;
+    margin: 15px auto 0;
+    background-color: #ffffff;
+    border: 2px solid #0ef;
+    /* Bright cyan border */
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    display: flex;
+    overflow: hidden;
+    width: 90%;
+    height: auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for container */
+.signup-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 15px 40px rgba(0, 123, 255, 0.2);
+}
+
+/* Form Section */
 .signup-form {
-    padding: 50px;
+    padding: 60px 50px;
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
 }
 
+/* Form Title */
 .signup-form h2 {
-    margin-bottom: 10px;
-    font-weight: bold;
+    margin-bottom: 40px;
+    font-weight: 700;
+    font-size: 32px;
+    color: #333;
+    text-align: center;
+    position: relative;
 }
 
-.signup-form p {
+/* Form Controls (input) */
+.signup-form .form-control {
+    border-radius: 12px;
+    height: 50px;
+    font-size: 16px;
+    border: 1px solid #ced4da;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    padding: 10px 15px;
+}
+
+/* Input focus effect */
+.signup-form .form-control:focus {
+    border-color: #0ef;
+    /* Cyan border color on focus */
+    box-shadow: 0 0 10px rgba(14, 255, 255, 0.5);
+    /* Subtle cyan glow on focus */
+    outline: none;
+}
+
+/* Animated labels */
+.textOnInput {
+    position: relative;
     margin-bottom: 30px;
-    color: #6c757d;
 }
 
-.signup-form .form-label{
-    margin-top: 15px;
+.textOnInput label {
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    font-size: 14px;
+    background-color: #ffffff;
+    padding: 0 5px;
+    z-index: 1;
+    transition: all 0.3s ease;
+    color: #495057;
 }
 
+.form-control:focus~label,
+.form-control:not(:placeholder-shown)~label {
+    top: -20px;
+    font-size: 12px;
+    color: #0ef;
+    /* Cyan label color on focus */
+}
+
+/* Submit Button */
 .signup-form .btn-primary {
-    border-radius: 5px;
-    height: 45px;
-    background-color: #000000;
+    border-radius: 30px;
+    height: 50px;
+    background-color: #007bff;
     border: none;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 20px;
+    width: 100%;
 }
 
-.signup-form .form-check-label {
-    margin-left: 10px;
+/* Button hover */
+.signup-form .btn-primary:hover {
+    background-color: #0056b3;
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.2);
 }
 
-.signup-form .terms-link {
-    color: #007bff;
-    text-decoration: none;
-}
-
-.signup-form .terms-link:hover {
-    text-decoration: underline;
-}
-
+/* Links */
 .signup-form .login-link {
     color: #007bff;
     text-decoration: none;
@@ -63,49 +128,31 @@ body {
     text-decoration: underline;
 }
 
+/* Image Section */
 .signup-image {
     flex: 1;
-    background-color: #f1f3f5;
+    background-color: #f8f9fa;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 
 .signup-image img {
-    max-width: 80%;
+    max-width: 100%;
     height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
 }
 
+/* Image hover effect */
+.signup-image:hover img {
+    transform: scale(1.05);
+}
 
-
-.textOnInput {
-    position: relative;
-}
-.textOnInput label {
-    position: absolute;
-    color: #355574;
-    top: -15px;
-    left: 15px;
-    padding: 3px;
-    z-index: 1;
-}
-.textOnInput label:after {
-    content: " ";
-    background-color: #fff;
-    width: 100%;
-    height: 20px;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    z-index: -1;
-}
-label {
-    font-size: 14px;
-    font-weight: 400;
-    display: inline-block;
-    margin-bottom: .5rem;
-}
-.form-control {
-    box-shadow: none !important;
-    padding: 2.5%;
+/* Responsiveness */
+@media (max-width: 768px) {
+    .signup-container {
+        flex-direction: column;
+    }
 }

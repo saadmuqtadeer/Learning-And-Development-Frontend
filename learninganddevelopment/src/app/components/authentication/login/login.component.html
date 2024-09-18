@@ -3,24 +3,79 @@
     <h2>Login</h2>
     <form [formGroup]="loginForm" (ngSubmit)="logIn()">
       <div class="mb-3 textOnInput">
-        <label for="email" >Email</label>
-        <input type="email" class="form-control" id="email"  formControlName="Email" [class.is-invalid]="validateControl('Email')">
-        <span *ngIf="validateControlError('Email','required')" class="text-danger">Email is required*</span>
-        <span *ngIf="validateControlError('Email','email')" class="text-danger">Email is invalid</span>
+        <input type="email" class="form-control" id="email" formControlName="Email" placeholder=" "
+          [class.is-invalid]="validateControl('Email')" />
+        <label for="email">Email</label>
+        <span *ngIf="validateControlError('Email', 'required')" class="text-danger">
+          Email is required*
+        </span>
+        <span *ngIf="validateControlError('Email', 'email')" class="text-danger">
+          Email is invalid
+        </span>
       </div>
       <div class="mb-3 textOnInput">
-        <label for="password" >Password</label>
-        <input type="password" class="form-control" id="password" formControlName="Password" [class.is-invalid]="validateControl('Password')">
-        <span *ngIf="validateControlError('Password','required')" class="text-danger">Password is required*</span>
-        <button type="submit" class="btn btn-primary w-100 mt-4" [disabled]="loginForm.invalid">Login</button>
-      <a routerLink="/forgot-password" class="forgot-password float-end">Forgot password?</a>
-      <a routerLink="/register" class="signup-link">Don't have an account? Sign up</a>
+        <input type="password" class="form-control" id="password" formControlName="Password" placeholder=" "
+          [class.is-invalid]="validateControl('Password')" />
+        <label for="password">Password</label>
+        <span *ngIf="validateControlError('Password', 'required')" class="text-danger">
+          Password is required*
+        </span>
       </div>
-      </form>
+      <button type="submit" class="btn btn-primary w-100 mt-4" [disabled]="loginForm.invalid">
+        Login
+      </button>
+      <div class="login-links mt-3">
+        <a routerLink="/forgot-password" class="forgot-password">Forgot password?</a>
+        <a routerLink="/register" class="signup-link">Don't have an account? Sign up</a>
+      </div>
+    </form>
   </div>
   <div class="login-image">
     <img
       src="https://img.freepik.com/free-vector/access-control-system-abstract-concept_335657-3180.jpg?size=626&ext=jpg&ga=GA1.1.556337143.1725380902&semt=ais_hybrid"
-      alt="Security Illustration">
+      alt="Security Illustration" />
+  </div>
+</div>
+
+<div class="animation-container">
+  <div class="running-person person1">
+    <div class="head">
+      <div class="eye left-eye"></div>
+      <div class="eye right-eye"></div>
+      <div class="smile"></div>
+      <!-- Add smile element -->
+    </div>
+    <div class="body"></div>
+    <div class="legs">
+      <div class="leg left-leg"></div>
+      <div class="leg right-leg"></div>
+    </div>
+    <div class="arms">
+      <div class="arm left-arm"></div>
+      <div class="arm right-arm"></div>
+    </div>
+    <div class="speech-bubble">
+      <div class="speech-text">Hi</div>
+    </div>
+  </div>
+  <div class="running-person person2">
+    <div class="head">
+      <div class="eye left-eye"></div>
+      <div class="eye right-eye"></div>
+      <div class="smile"></div>
+      <!-- Add smile element -->
+    </div>
+    <div class="body"></div>
+    <div class="legs">
+      <div class="leg left-leg"></div>
+      <div class="leg right-leg"></div>
+    </div>
+    <div class="arms">
+      <div class="arm left-arm"></div>
+      <div class="arm right-arm"></div>
+    </div>
+    <div class="speech-bubble">
+      <div class="speech-text">Welcome</div>
+    </div>
   </div>
 </div>

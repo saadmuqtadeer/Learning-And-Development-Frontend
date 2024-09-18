@@ -45,7 +45,7 @@ export class TocComponent implements OnInit {
   }
 
   generateToc(): void {
-    const prompt = `Generate a table of contents for the following training request: ${JSON.stringify(this.request)}`;
+    const prompt = `Generate a table of Cirriculum for the following training request: ${JSON.stringify(this.request)}`;
     // this.tocService.generateToc(prompt).subscribe(
     //   (response) => {
     //     this.aiResponse = response.choices[0].message.content;

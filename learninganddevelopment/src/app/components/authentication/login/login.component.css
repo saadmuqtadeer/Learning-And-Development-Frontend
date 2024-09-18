@@ -1,50 +1,128 @@
+/* Global Styling */
 body {
-    background-color: #f8f9fa;
-}
-
-.login-container {
-    max-width: 900px;
-    margin: 50px auto;
-    background-color: #fff;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
+    background-color: #e6f7ff; /* Light cyan background for the entire page */
     display: flex;
-    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
 }
 
+/* Container */
+.login-container {
+    max-width: 850px;
+    margin: 50px auto 0;
+    background-color: #ffffff;
+    border: 2px solid #0ef; /* Bright cyan border */
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    display: flex;
+    overflow: hidden;
+    width: 90%;
+    height: auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* Ensure positioning context for absolute children */
+}
+
+/* Hover effect for container */
+.login-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 15px 40px rgba(0, 123, 255, 0.2);
+}
+
+/* Form Section */
 .login-form {
-    padding: 50px;
+    padding: 60px 50px;
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
 }
 
+/* Form Title */
 .login-form h2 {
-    margin-bottom: 30px;
-    font-weight: bold;
+    margin-bottom: 40px;
+    font-weight: 700;
+    font-size: 32px;
+    color: #333;
+    text-align: center;
+    position: relative;
 }
 
+/* Form Controls (input) */
 .login-form .form-control {
-    border-radius: 5px;
-    height: 45px;
+    border-radius: 12px;
+    height: 50px;
+    font-size: 16px;
+    border: 1px solid #ced4da;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    padding: 10px 15px;
 }
 
+/* Input focus effect */
+.login-form .form-control:focus {
+    border-color: #0ef; /* Cyan border color on focus */
+    box-shadow: 0 0 10px rgba(14, 255, 255, 0.5); /* Subtle cyan glow on focus */
+    outline: none;
+}
+
+/* Animated labels */
+.textOnInput {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.textOnInput label {
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    font-size: 14px;
+    background-color: #ffffff;
+    padding: 0 5px;
+    z-index: 1;
+    transition: all 0.3s ease;
+    color: #495057;
+}
+
+.form-control:focus~label,
+.form-control:not(:placeholder-shown)~label {
+    top: -20px;
+    font-size: 12px;
+    color: #0ef; /* Cyan label color on focus */
+}
+
+/* Submit Button */
 .login-form .btn-primary {
-    border-radius: 5px;
-    height: 45px;
-    background-color: #000000;
+    border-radius: 30px;
+    height: 50px;
+    background-color: #007bff;
     border: none;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 20px;
 }
 
-.login-form .form-check-label {
-    margin-left: 10px;
+/* Button hover */
+.login-form .btn-primary:hover {
+    background-color: #0056b3;
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.2);
+}
+
+/* Links */
+.login-form .login-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 
 .login-form .forgot-password,
 .login-form .signup-link {
-    display: inline-block;
-    margin-top: 15px;
     color: #007bff;
     text-decoration: none;
+    font-size: 14px;
 }
 
 .login-form .forgot-password:hover,
@@ -52,50 +130,249 @@ body {
     text-decoration: underline;
 }
 
+/* Image Section */
 .login-image {
     flex: 1;
-    background-color: #f1f3f5;
+    background-color: #f8f9fa;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 
 .login-image img {
-    max-width: 80%;
+    max-width: 100%;
     height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
 }
 
+/* Image hover effect */
+.login-image:hover img {
+    transform: scale(1.05);
+}
 
+/* Responsiveness */
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+    }
+}
 
-
-.textOnInput {
+/* Animation Container */
+.animation-container {
+    overflow: hidden; /* Hide overflowing content */
+    width: 100vw; /* Full viewport width */
+    height: 200px; /* Set height based on animation size */
     position: relative;
-}
-.textOnInput label {
-    position: absolute;
-    color: #355574;
-    top: -15px;
-    left: 15px;
-    padding: 3px;
-    z-index: 1;
-}
-.textOnInput label:after {
-    content: " ";
-    background-color: #fff;
-    width: 100%;
-    height: 20px;
-    position: absolute;
+    top: 0;
     left: 0;
-    bottom: 0;
-    z-index: -1;
+    margin-top: 0; /* Ensure no margin causing extra space */
 }
-label {
-    font-size: 14px;
-    font-weight: 400;
-    display: inline-block;
-    margin-bottom: .5rem;
+
+/* Running Person */
+.running-person {
+    width: 100px;
+    height: 200px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: run 5s infinite linear;
 }
-.form-control {
-    box-shadow: none !important;
-    padding: 2.5%;
+
+/* Position person1 */
+.person1 {
+    left: -100px; /* Start position off-screen */
+}
+
+/* Position person2 with delay */
+.person2 {
+    left: -200px; /* Start position further off-screen */
+    animation: run 5s infinite linear 2s; /* Delay for person2 */
+}
+
+
+
+/* Head */
+.head {
+    width: 60px;
+    height: 60px;
+    background: #ffcc99;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Ensure hair doesn't overflow the head */
+}
+
+/* Eyes */
+.eye {
+    width: 12px;
+    height: 12px;
+    background: #000;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+}
+
+.left-eye {
+    left: 15px;
+}
+
+.right-eye {
+    right: 15px;
+}
+
+/* Smile */
+/* Smile */
+/* Smile */
+/* Smile */
+.smile {
+    position: absolute;
+    bottom: 8px; /* Adjust to position the smile appropriately */
+    left: 50%; /* Center horizontally within the head */
+    width: 50%; /* Set width to create a balanced smile */
+    height: 12px; /* Slightly taller to create a better curve */
+    background: #000; /* Color of the smile */
+    border-radius: 0 0 20px 20px; /* More natural curve for the smile */
+    transform: translateX(-50%); /* Center the smile horizontally */
+}
+
+
+
+
+/* Body */
+.body {
+    width: 60px;
+    height: 100px;
+    background: #ffcc00;
+    position: absolute;
+    top: 60px;
+    left: 20px;
+    border-radius: 10px;
+}
+
+/* Legs */
+.legs {
+    position: absolute;
+    top: 160px;
+    left: 20px;
+    width: 60px;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.leg {
+    width: 20px;
+    height: 80px;
+    background: #003366;
+    border-radius: 10px;
+}
+
+.left-leg {
+    animation: leg-move-left 1s infinite alternate;
+}
+
+.right-leg {
+    animation: leg-move-right 1s infinite alternate;
+}
+
+/* Arms */
+.arms {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 100px;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.arm {
+    width: 20px;
+    height: 60px;
+    background: #003366;
+    border-radius: 10px;
+}
+
+.left-arm {
+    animation: arm-move-left 1s infinite alternate;
+}
+
+.right-arm {
+    animation: arm-move-right 1s infinite alternate;
+}
+
+/* Speech Bubble */
+.speech-bubble {
+    position: absolute;
+    top: -40px; /* Adjust position above the head */
+    left: 100px; /* Position to the right of the person */
+    background: #fff;
+    border: 2px solid #0ef; /* Cyan border */
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 16px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transform: translateY(-50%); /* Center vertically */
+}
+
+.speech-text {
+    margin: 0;
+}
+
+/* 3D Running Animation */
+@keyframes run {
+    from {
+        transform: translateX(-100px); /* Start off-screen */
+    }
+    to {
+        transform: translateX(calc(100vw + 100px)); /* End off-screen */
+    }
+}
+
+/* Leg Animations */
+@keyframes leg-move-left {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(30deg);
+    }
+}
+
+@keyframes leg-move-right {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-30deg);
+    }
+}
+
+/* Arm Animations */
+@keyframes arm-move-left {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-30deg);
+    }
+}
+
+@keyframes arm-move-right {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(30deg);
+    }
 }
