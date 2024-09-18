@@ -1,10 +1,48 @@
-<!-- example.component.html -->
-<!-- toc.component.html -->
-<div #contentToConvert>
-    <h1>Table of Contents</h1>
-    <p>Details for request ID: {{ requestId }}</p>
-    <!-- Add TOC content here -->
-</div>
-
-
-<button (click)="downloadPdf()">Download PDF</button>
+<div class="container">
+    <div *ngIf="aiResponse; else content">
+      <div class="card">
+        <div class="card-header">
+          <h4><strong>AI Generated TOC</strong></h4>
+        </div>
+        <div class="card-body" #tocContent>
+          <p>{{ aiResponse }}</p>
+        </div>
+        <button type="button" class="btn btn-lg btn-success mt-3" (click)="downloadPdf()">Download TOC as PDF
+          <i class="fa fa-download"></i>
+        </button>
+      </div>
+    </div>
+    <ng-template #content>
+      <div class="card">
+        <div class="card-header">
+          <h4><strong>Training Request Details</strong></h4>
+        </div>
+        <div class="card-body">
+          <div *ngIf="request">
+            <div class="row">
+              <div class="col-md-6">
+                <p><strong>Name:</strong> {{ request.requestorName }}</p>
+                <p><strong>Email:</strong> {{ request.requestorEmail }}</p>
+                <p><strong>Title:</strong> {{ request.trainingTitle }}</p>
+                <p><strong>Department:</strong> {{ request.department }}</p>
+                <p><strong>Date Requested:</strong> {{ request.preferredStartDate | date }}</p>
+              </div>
+              <div class="col-md-6">
+                <p><strong>Description:</strong></p>
+                <p>{{ request.trainingDescription }}</p>
+                <p><strong>Location:</strong> {{ request.trainingLocation }}</p>
+                <p><strong>Duration (hours):</strong> {{ request.duration }}</p>
+              </div>
+            </div>
+            <button type="button" class="btn btn-lg btn-primary mt-3" (click)="generateToc()">Generate TOC with AI
+              <i class="fa fa-rocket"></i>
+            </button>
+          </div>
+          <div *ngIf="!request">
+            <p>Loading...</p>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+  

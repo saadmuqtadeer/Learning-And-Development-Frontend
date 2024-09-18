@@ -156,7 +156,6 @@ export class TrainingRequestsComponent implements OnInit {
 
   generateToc(request: any) {
     console.log('Generate TOC for:', request);
-
     this.router.navigate(['/admin/toc'], { queryParams: { requestId: request.id } });
   }
 }

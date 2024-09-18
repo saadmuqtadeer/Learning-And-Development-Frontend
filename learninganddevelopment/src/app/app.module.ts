@@ -27,6 +27,7 @@ import { UserEditComponent } from './components/admin/views/allusers/user-edit/u
 import { UserDetailComponent } from './components/admin/views/allusers/user-detail/user-detail.component';
 import { AccountsFeedbackComponent } from './components/accounts/views/accounts-feedback/accounts-feedback.component';
 import { TocComponent } from './components/admin/views/toc/toc/toc.component';
+import {NgToastModule} from 'ng-angular-popup';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { TocComponent } from './components/admin/views/toc/toc/toc.component';
     ReactiveFormsModule,
     HttpClientModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    NgToastModule
     // NgToastModule,  // Uncomment if used
   ],
   providers: [

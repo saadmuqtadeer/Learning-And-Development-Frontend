@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/authentication/auth.service';
 import { UserStoreService } from '../../../services/authentication/user-store.service';
-// import { NgToastService } from 'ng-toast';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +20,8 @@ export class LoginComponent {
     private fb: FormBuilder,
     private loginService: AuthService,
     private router: Router,
-    private userStore: UserStoreService
+    private userStore: UserStoreService,
+    private toast: NgToastService
   ) {
     localStorage.clear();
     this.loginForm = this.fb.group({
@@ -50,6 +51,7 @@ export class LoginComponent {
     const loginData = this.loginForm.value;
     this.loginService.login(loginData.Email, loginData.Password).subscribe({
       next: (response) => {
+        this.toast.success('Login successful')
         console.log('Login successful:', response);
         if (response.id) {
           this.auth.setId(response.id);

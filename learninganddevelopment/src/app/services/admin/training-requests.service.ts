@@ -21,5 +21,10 @@ export class TrainingRequestsService {
     console.log('Updating request status:', requestUpdate);
     return this.http.put<any>(`${this.apiUrl}update-status/${id}`, requestUpdate);
   }
+
+  public getRequestsById(id:number):Observable<any>{
+    console.log('Getting Request:');
+    return this.http.get<any>(`${this.apiUrl}training-requests/${id}`);
+  }
   
 }
